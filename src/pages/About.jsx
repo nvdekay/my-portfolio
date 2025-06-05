@@ -57,9 +57,9 @@ function About() {
                             href=""
                             className="flex justify-center items-center"
                         >
-                            <button className="inline-block px-2 py-1 text-lg text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
+                            <a href="#contact" className="inline-block px-2 py-1 text-lg text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
                                 Contact me!
-                            </button>
+                            </a>
                         </a>
                         <a
                             href="https://drive.google.com/file/d/1ymaK0DjPnRdvP0oMgAxGSO7b-eK81hvW/view?usp=drive_link"

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 function Hero() {
     const roles = ['Frontend Developer', 'Software Engineer', 'Backend Developer']
-    const typedText = useTypedText(roles, 10, 2000) // tốc độ gõ và delay giữa các role
+    const typedText = useTypedText(roles, 10, 1500)
 
     return (
         <div className='relative overflow-hidden min-h-[550px] sm:min-h-[600px] flex flex-col justify-center items-center lg:ml-60'>
