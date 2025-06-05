@@ -37,17 +37,14 @@ function About() {
                         </h1>
                     </header>
                     <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-                        Loborum quidem aperiam natus.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
-                        Loborum quidem aperiam natus.
+                        I am an enthusiastic and passionate software engineering major. If you have any questions or would like to communicate, please do not hesitate to contact me through this personal portfolio page.
                     </p>
                     <footer className="flex flex-row gap-4 flex-wrap justify-center lg:justify-start">
                         <a
                             href=""
                             className="flex justify-center items-center"
                         >
-                            <button className="inline-block px-2 py-1 text-xl text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
+                            <button className="inline-block px-2 py-1 text-lg text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
                                 Contact me!
                             </button>
                         </a>

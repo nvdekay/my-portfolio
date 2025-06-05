@@ -1,12 +1,12 @@
 import { article, image, li, main } from 'framer-motion/client'
 import React from 'react'
 
-const ProjectCard = ({ image, title, description, link }) => {
+const ProjectCard = ({ image, title, description, technologies, link }) => {
     return (
         <article className='relative bg-gray-800 rounded overflow-hidden shadow-lg group w-full max-w-sm mx-auto'>
             <div className='absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10'></div>
 
-            <div className='relative z-10'>
+            <div className='z-10'>
                 <figure className='relative'>
                     <img src={image} className="w-full h-48 object-cover transition-tranform duration-300 group-hover:scale-110" alt="" />
                     <a
@@ -21,12 +21,29 @@ const ProjectCard = ({ image, title, description, link }) => {
                         </button>
                     </a>
                 </figure>
-                <div className='px-6 py-4'>
+                <div className="px-6 py-4 relative h-full flex flex-col">
                     <header>
-                        <h3 className='text-white font-bold text-xl mb-2'>{title}</h3>
+                        <h3 className="text-white font-bold text-xl mb-2">{title}</h3>
                     </header>
-                    <p className='text-gray-200 text-base'>{description}</p>
+
+                    <p className="text-gray-200 text-base">{description}</p>
+
+                    {/* Tech Stack */}
+                    <div className="mb-0 pt-4">
+                        <div className="text-teal-500 font-semibold">Tech Stack:</div>
+                        <div className="flex flex-wrap gap-2 mt-1">
+                            {technologies.map((tech, index) => (
+                                <span
+                                    key={index}
+                                    className="bg-white/10 border border-white/20 rounded-[20px] text-white inline-block text-[12px] px-[10px] py-[3px] transition-all duration-300"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </article>
     );
@@ -39,24 +56,28 @@ function Projects() {
             image: 'assets/images/projects/project.png',
             title: 'My Portfolio',
             description: 'A personal portfolio website built with ReactJS, Vite, TailwindCSS and Framer Motion, showcasing my skills and projects in a visually appealing and user-friendly interface.',
+            technologies: ['ReactJS', 'Vite', 'TailwindCSS', 'Framer Motion'],
             link: 'https://khanhnvd.vercel.app/'
         },
         {
             image: 'assets/images/projects/project.png',
             title: 'Mavent',
             description: 'A role-based platform enabling event operations from Super Admin to Participant. Developed key features like event dashboards, task and document management, user role control, and multi-role registration workflows.',
+            technologies: ['ReactJS', 'TailwindCSS', 'Spring Boot', 'MySQL'],
             link: 'https://github.com/nphi1410/Mavent'
         },
         {
             image: 'assets/images/projects/project.png',
             title: 'BoostYourStyle',
             description: 'A full-stack e-commerce website built with Java (Servlet, JSP, JSTL, JDBC) and Bootstrap, featuring separate user and admin interfaces for a complete online shopping experience.',
+            technologies: ['Servlet', 'JSP', 'Bootstrap', 'JDBC', 'SQL Server'],
             link: 'https://github.com/nvdekay/boost-your-style'
         },
         {
             image: 'assets/images/projects/project.png',
             title: 'HelloWorld',
             description: 'A simple web application built with HTML, CSS, and JavaScript, showcasing a basic user interface and functionality.',
+            technologies: ['HTML', 'CSS', 'JavaScript'],
             link: ''
         }
     ]
@@ -100,6 +121,7 @@ function Projects() {
                         image={project.image}
                         title={project.title}
                         description={project.description}
+                        technologies={project.technologies}
                         link={project.link}
                     />
                 ))}
