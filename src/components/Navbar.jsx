@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark, faHouseChimney, faAddressCard, faDiagramProject, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faHouseChimney, faAddressCard, faDiagramProject, faCertificate, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,8 @@ function Navbar() {
     { id: 1, icon: faHouseChimney, name: 'Home', link: '/' },
     { id: 2, icon: faAddressCard, name: 'About', link: '#about' },
     { id: 3, icon: faDiagramProject, name: 'Projects', link: '#projects' },
-    { id: 4, icon: faEnvelope, name: 'Contact', link: '#contact' },
+    { id: 4, icon: faCertificate, name: 'Certificates', link: '#certificates' },
+    { id: 5, icon: faEnvelope, name: 'Contact', link: '#contact' },
   ];
 
   return (

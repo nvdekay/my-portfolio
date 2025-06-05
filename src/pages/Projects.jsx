@@ -4,7 +4,8 @@ import React from 'react'
 const ProjectCard = ({ image, title, description, technologies, link }) => {
     return (
         <article className='relative bg-gray-800 rounded overflow-hidden shadow-lg group w-full max-w-sm mx-auto'>
-            <div className='absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10'></div>
+            <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#3cbff5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
+
 
             <div className='z-10'>
                 <figure className='relative'>
@@ -13,7 +14,7 @@ const ProjectCard = ({ image, title, description, technologies, link }) => {
                         href={link}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='absolute h-[202px] inset-0 flex items-center justify-center bg-purple-800 bg-opacity-50 opacity-0
+                        className='absolute h-[202px] inset-0 flex items-center justify-center bg-blue-800 bg-opacity-50 opacity-0
                     group-hover:opacity-100 transition-opacity duration-300'
                     >
                         <button className='bg-white font-medium text-black py-2 px-4 rounded-3xl shadow hover:text-white hover:bg-[#2879d5]'>
@@ -93,10 +94,11 @@ function Projects() {
                         alt=""
                         className='absolute z-0 left-2 top-2 sm:left-16 sm:top-32 transform -rotate-12 w-24 h-auto sm:w-32 opacity-70'
                     />
-                    <div className='absolute z-0 w-72 h-36 sm:w-96 sm:h-44 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 top-10 sm:top-28 left-1/2 transform -translate-x-1/2'></div>
+                    <div className="absolute z-0 w-72 h-36 sm:w-96 sm:h-44 bg-[#3cbff5] rounded-full blur-3xl opacity-50 top-10 sm:top-28 left-1/2 transform -translate-x-1/2"></div>
+
                     <div>
                         <h1 className='text-3xl text-white sm:text-4xl font-bold mb-6'>
-                            My <span className='text-purple-400'>Projects</span>
+                            My <span className='text-blue-400'>Projects</span>
                         </h1>
                         <p className='text-gray-400 mt-2 sm:mt-4 text-sm sm:text-base'>
                             Here are some of the projects I have worked on

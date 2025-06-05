@@ -6,6 +6,7 @@ import About from './pages/About'
 import Navbar from './components/Navbar'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
+import Certificates from './pages/Certificates'
 
 const App = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const App = () => {
       <Hero />
       <About />
       <Projects />
+      <Certificates />
       <Contact />
     </main>
   )
