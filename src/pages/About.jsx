@@ -1,67 +1,62 @@
-import { section } from 'framer-motion/client'
-import React from 'react'
+import React from 'react';
+import { section } from 'framer-motion/client';
 
 function About() {
     return (
         <section
-            id='about'
-            className='min-h-screen overflow-hidden flex items-center justify-center text-white px-4 sm:px-6'
+            id="about"
+            className="lg:ml-60 min-h-screen overflow-hidden flex items-center justify-center text-white px-4 sm:px-6 mb-16"
         >
-            <div className='max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center'>
+            <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                 <figure
                     data-aos='fade-right'
                     data-aos-delay='500'
-                    className='flex flex-wrap justify-center gap-4 relative'
+                    className='relative flex justify-center items-center h-full'
                 >
-                    <div className='h-[200px] sm:h-[300px] w-[300px] sm:w-[400px] lg:h-[300px] lg:w-[500px] bg-gradient-to-l
-                    from-[#6d2897] via-[#6c95f5] to-[#bb61c5] absolute transform rotate-12 z-0 right-5 -top-2 md:top-10 rounded-full'></div>
-                    <img
-                        src="/assets/images/avatars/bot_about.png"
-                        alt="About pic 1"
-                        className='absolute -top-2 left-5 sm:left-10 transform -translate-y-12 z-20 w-24 h-24 sm:w-32 sm:h-32 rounded-3xl shadow-lg'
-                    />
+                    <div className="z-10 relative">
+                        {/* Hiệu ứng nền gradient glow */}
+                        <div className="absolute rounded-full -inset-4 bg-gradient-to-br from-[#6d2897] via-[#6c95f5] to-[#bb61c5] blur-xl opacity-60 animate-pulse-slow"></div>
 
-                    <img
-                        src=""
-                        alt=""
-                        className='relative z-10 w-36 h-44 sm:w-40 sm:h-40 md:w-72 md:h-96 rounded-lg shadow-lg'
-                    />
+                        <img
+                            src="/assets/images/avatars/about.png"
+                            alt="Your Photo"
+                            className='relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[500px] md:h-[500px] object-cover rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105'
+                        />
+                    </div>
                 </figure>
 
                 <article
-                    data-aos='fade-left'
-                    data-aos-delay='500'
-                    className='text-center lg:text-left relative'
+                    data-aos="fade-left"
+                    data-aos-delay="500"
+                    className="text-center lg:text-left relative lg:mt-28"
                 >
-                    <div className='absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10'></div>
+                    <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
                     <header>
-                        <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6'>About me</h1>
-
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+                            About me
+                        </h1>
                     </header>
-                    <p className='text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed'>
+                    <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
                         Loborum quidem aperiam natus.
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
                         Loborum quidem aperiam natus.
                     </p>
-                    <footer className='flex flex-row'>
+                    <footer className="flex flex-row gap-4 flex-wrap justify-center lg:justify-start">
                         <a
                             href=""
-                            className='flex justify-center md:justify-start items-center w-full'
+                            className="flex justify-center items-center"
                         >
-                            <button class="inline-block px-2 py-1 text-xl text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
+                            <button className="inline-block px-2 py-1 text-xl text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
                                 Contact me!
                             </button>
-
-
                         </a>
-
                         <a
                             href="https://drive.google.com/file/d/1ymaK0DjPnRdvP0oMgAxGSO7b-eK81hvW/view?usp=drive_link"
                             download={true}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='flex justify-center md:justify-start items-center w-full'
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex justify-center items-center"
                         >
                             <button className="group relative w-[150px] h-[40px] border-2 border-[#323232] shadow-[4px_4px_0_#323232] rounded-[10px] bg-[#eee] overflow-hidden flex items-center transition-all active:translate-x-[3px] active:translate-y-[3px] active:shadow-none">
                                 <span className="group-hover:text-transparent text-[#323232] font-semibold pl-[22px] transition-all duration-300">
@@ -75,16 +70,12 @@ function About() {
                                     </svg>
                                 </span>
                             </button>
-
                         </a>
                     </footer>
-
                 </article>
             </div>
-
-
         </section>
-    )
+    );
 }
 
-export default About
+export default About;

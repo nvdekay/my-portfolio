@@ -7,7 +7,7 @@ function Hero() {
     const typedText = useTypedText(roles, 10, 2000) // tốc độ gõ và delay giữa các role
 
     return (
-        <div className='relative overflow-hidden min-h-[550px] sm:min-h-[600px] flex flex-col justify-center items-center'>
+        <div className='relative overflow-hidden min-h-[550px] sm:min-h-[600px] flex flex-col justify-center items-center lg:ml-60'>
             <main
                 id='home'
                 className='flex flex-col-reverse md:flex-row items-center w-full max-w-[1280px] mx-auto px-4 md:px-8 pb-4 pt-24 mt-14 md:mt-36 gap-8'
