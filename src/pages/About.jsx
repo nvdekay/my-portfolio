@@ -31,27 +31,31 @@ function About() {
                     className="text-center lg:text-left relative lg:mt-28"
                 >
                     <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
-                    <header>
+                    <header className='flex flex-col items-start'>
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                             About me
                         </h1>
+                        <hr className="border-t-2 border-[#9c3fda] w-1/4 mb-6 sm:mb-8 self-start" />
                     </header>
-                    <hr className="border-t-2 border-[#9c3fda] w-1/4 mb-6 sm:mb-8" />
-                    <h3 class="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
-                    <ul class="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8">
-                        <li>
-                            <span class="font-medium">Programming languages: </span>
-                            <span>C, Java, Javascript/Typescript, SQL</span>
-                        </li>
-                        <li>
-                            <span class="font-medium">Libraries and frameworks: </span>
-                            <span>ReactJS, NextJS, Spring Boot, Tailwind CSS</span>
-                        </li>
-                        <li>
-                            <span class="font-medium">Tools: </span>
-                            <span>Visual Studio Code, IntelliJ IDEA, Git/Github, SQL Server, MySQL, Postman, Docker Desktop</span>
-                        </li>
-                    </ul>
+
+                    <div className="flex flex-col items-start">
+                        <h3 class="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
+                        <ul class="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8 text-left">
+                            <li>
+                                <span class="font-medium">Programming languages: </span>
+                                <span>C, Java, Javascript/Typescript, SQL</span>
+                            </li>
+                            <li>
+                                <span class="font-medium">Libraries and frameworks: </span>
+                                <span>ReactJS, NextJS, Spring Boot, Tailwind CSS</span>
+                            </li>
+                            <li>
+                                <span class="font-medium">Tools: </span>
+                                <span>Visual Studio Code, IntelliJ IDEA, Git/Github, SQL Server, MySQL, Postman, Docker Desktop</span>
+                            </li>
+                        </ul>
+
+                    </div>
                     <footer className="flex flex-row gap-4 flex-wrap justify-center lg:justify-start">
                         <a
                             href=""

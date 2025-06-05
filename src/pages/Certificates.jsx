@@ -66,7 +66,7 @@ const CertificateCard = ({ image, title, issuer, description, link }) => (
 
 const Certificates = () => {
     return (
-        <main id="certificates" className="p-4 ml-0 md:ml-60 min-h-screen mt-48">
+        <main id="certificates" className="p-4 ml-0 lg:ml-60 min-h-screen mt-48">
             <section data-aos="fade-up" data-aos-delay="300">
                 <header className="text-center relative">
                     <img

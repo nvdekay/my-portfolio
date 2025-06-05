@@ -3,7 +3,7 @@ import React from 'react'
 
 const ProjectCard = ({ image, title, description, technologies, link }) => {
     return (
-        <article className='relative bg-gray-800 rounded overflow-hidden shadow-lg group w-full max-w-sm mx-auto'>
+        <article className='relative bg-gray-800 rounded overflow-hidden shadow-lg group w-full max-w-sm mx-auto '>
             <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#3cbff5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
 
 
@@ -83,7 +83,7 @@ function Projects() {
         }
     ]
     return (
-        <main id='projects' className='p-4 ml-0 md:ml-60 min-h-screen'>
+        <main id='projects' className='p-4 ml-0 lg:ml-60 min-h-screen'>
             <section
                 data-aos='fade-up'
                 data-aos-delay='300'
@@ -115,7 +115,7 @@ function Projects() {
             <section
                 data-aos='fade-up'
                 data-aos-delay='500'
-                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-36 sm:mt-64 px-36'
+                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-36 sm:mt-64 px-6 sm:px-12 lg:px-24'
             >
                 {listProjects.map((project, index) => (
                     <ProjectCard
