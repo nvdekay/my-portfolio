@@ -1,30 +1,40 @@
 import { React, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faHouseChimney, faAddressCard, faDiagramProject, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const NavbarLinks = [
-    { id: 1, name: 'Home', link: '#home' },
-    { id: 2, name: 'About', link: '#about' },
-    { id: 3, name: 'Projects', link: '#projects' },
+    { id: 1, icon: faHouseChimney, name: 'Home', link: '/' },
+    { id: 2, icon: faAddressCard, name: 'About', link: '#about' },
+    { id: 3, icon: faDiagramProject, name: 'Projects', link: '#projects' },
+    { id: 4, icon: faEnvelope, name: 'Contact', link: '#contact' },
   ];
 
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex fixed top-0 left-0 h-screen w-60 text-white flex-col items-center py-10 space-y-8 z-50 border-r border-gray-700">
-
-        <a href="#home" className="text-3xl font-bold italic">nvdeekay.07</a>
-        {NavbarLinks.map((link) => (
-          <a key={link.id} href={link.link} className="text-lg hover:text-gray-300">
-            {link.name}
-          </a>
-        ))}
-        <button className="text-white border-2 py-2 px-6 hover:bg-purple-800 rounded-full text-lg">
-          Contact
-        </button>
+      <aside className="hidden lg:flex fixed top-0 left-0 h-screen w-60 text-white flex-col py-10 z-50 border-r border-gray-700">
+        <div className="text-3xl font-bold italic mb-10 w-full text-center">
+          <a href="/" className="block">nvdeekay.07</a>
+        </div>
+        <div className="flex-1 flex flex-col justify-center items-center space-y-8">
+          {NavbarLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.link}
+              className="text-lg hover:text-gray-300 flex items-center"
+            >
+              {link.icon && <FontAwesomeIcon icon={link.icon} className="mr-2" />}
+              {link.name}
+            </a>
+          ))}
+        </div>
+        <div className="text-sm text-gray-400 text-center mt-10">
+          Last updated: 6/6/2025
+        </div>
       </aside>
+
 
       {/* Mobile Navbar Toggle */}
       <div className="lg:hidden fixed top-5 left-5 z-50">

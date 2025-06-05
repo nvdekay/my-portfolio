@@ -35,7 +35,7 @@ const ProjectCard = ({ image, title, description, technologies, link }) => {
                             {technologies.map((tech, index) => (
                                 <span
                                     key={index}
-                                    className="bg-white/10 border border-white/20 rounded-[20px] text-white inline-block text-[12px] px-[10px] py-[3px] transition-all duration-300"
+                                    className="hover:bg-green-600 cursor-pointer bg-white/10 border border-white/20 rounded-[20px] text-white inline-block text-[12px] px-[10px] py-[3px] transition-all duration-300"
                                 >
                                     {tech}
                                 </span>
@@ -82,7 +82,7 @@ function Projects() {
         }
     ]
     return (
-        <main className='p-4 ml-0 md:ml-60 min-h-screen'>
+        <main id='projects' className='p-4 ml-0 md:ml-60 min-h-screen'>
             <section
                 data-aos='fade-up'
                 data-aos-delay='300'
@@ -113,7 +113,7 @@ function Projects() {
             <section
                 data-aos='fade-up'
                 data-aos-delay='500'
-                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-48 sm:mt-64'
+                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-36 sm:mt-64 px-36'
             >
                 {listProjects.map((project, index) => (
                     <ProjectCard

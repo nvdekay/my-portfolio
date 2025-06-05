@@ -36,9 +36,22 @@ function About() {
                             About me
                         </h1>
                     </header>
-                    <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-                        I am an enthusiastic and passionate software engineering major. If you have any questions or would like to communicate, please do not hesitate to contact me through this personal portfolio page.
-                    </p>
+                    <hr className="border-t-2 border-[#9c3fda] w-1/4 mb-6 sm:mb-8" />
+                    <h3 class="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
+                    <ul class="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8">
+                        <li>
+                            <span class="font-medium">Programming languages: </span>
+                            <span>C, Java, Javascript/Typescript, SQL</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Libraries and frameworks: </span>
+                            <span>ReactJS, NextJS, Spring Boot, Tailwind CSS</span>
+                        </li>
+                        <li>
+                            <span class="font-medium">Tools: </span>
+                            <span>Visual Studio Code, IntelliJ IDEA, Git/Github, SQL Server, MySQL, Postman, Docker Desktop</span>
+                        </li>
+                    </ul>
                     <footer className="flex flex-row gap-4 flex-wrap justify-center lg:justify-start">
                         <a
                             href=""
