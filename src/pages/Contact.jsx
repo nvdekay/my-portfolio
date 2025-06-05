@@ -15,7 +15,6 @@ function Contact() {
                     
                 </aside>
 
-                {/* Contact form */}
                 <section className='p-8 w-full md:w-1/2'>
                     <header className='mb-6'>
                         <h2 className='text-4xl font-bold text-center text-white'>Contact Me</h2>
