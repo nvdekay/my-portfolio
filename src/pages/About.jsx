@@ -39,18 +39,18 @@ function About() {
                     </header>
 
                     <div className="flex flex-col items-start">
-                        <h3 class="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
-                        <ul class="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8 text-left">
+                        <h3 className="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
+                        <ul className="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8 text-left">
                             <li>
-                                <span class="font-medium">Programming languages: </span>
+                                <span className="font-medium">Programming languages: </span>
                                 <span>C, Java, Javascript/Typescript, SQL</span>
                             </li>
                             <li>
-                                <span class="font-medium">Libraries and frameworks: </span>
+                                <span className="font-medium">Libraries and frameworks: </span>
                                 <span>ReactJS, NextJS, Spring Boot, Tailwind CSS</span>
                             </li>
                             <li>
-                                <span class="font-medium">Tools: </span>
+                                <span className="font-medium">Tools: </span>
                                 <span>Visual Studio Code, IntelliJ IDEA, Git/Github, SQL Server, MySQL, Postman, Docker Desktop</span>
                             </li>
                         </ul>
@@ -61,9 +61,9 @@ function About() {
                             href=""
                             className="flex justify-center items-center"
                         >
-                            <a href="#contact" className="inline-block px-2 py-1 text-lg text-white bg-[#ff5252] border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
+                            <button className="inline-block px-2 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
                                 Contact me!
-                            </a>
+                            </button>
                         </a>
                         <a
                             href="https://drive.google.com/file/d/1ymaK0DjPnRdvP0oMgAxGSO7b-eK81hvW/view?usp=drive_link"

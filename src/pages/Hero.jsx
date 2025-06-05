@@ -56,8 +56,8 @@ function Hero() {
 
 
                         <a href="#about" className='flex justify-center md:justify-start items-center w-full'>
-                            <button class="select-none border-4 border-black bg-gray-500 pb-[10px] transition ease-in-out transform hover:-translate-y-1 hover:shadow-lg active:pb-0 active:mb-[10px] active:translate-y-[10px] cursor-pointer">
-                                <div class="bg-[#dddddd] border-4 border-white px-4 py-[2px] text-[1.2em] tracking-[1px]">
+                            <button className="select-none border-4 border-black bg-gray-500 pb-[10px] transition ease-in-out transform hover:-translate-y-1 hover:shadow-lg active:pb-0 active:mb-[10px] active:translate-y-[10px] cursor-pointer">
+                                <div className="bg-[#dddddd] border-4 border-white px-4 py-[2px] text-[1.2em] tracking-[1px]">
                                     About me!
                                 </div>
                             </button>
