@@ -2,6 +2,7 @@ import { React, useEffect } from 'react'
 import Hero from './pages/Hero'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import About from './pages/About'
 
 const App = () => {
   useEffect(() => {
@@ -10,8 +11,9 @@ const App = () => {
     })
   })
   return (
-    <main className='bg-gray-950'>
+    <main className='bg-zinc-800'>
       <Hero />
+      <About />
     </main>
   )
 }
