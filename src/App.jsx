@@ -3,6 +3,7 @@ import Hero from './pages/Hero'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import About from './pages/About'
+import Navbar from './components/Navbar'
 
 const App = () => {
   useEffect(() => {
@@ -12,6 +13,7 @@ const App = () => {
   })
   return (
     <main className='bg-zinc-800'>
+      <Navbar />
       <Hero />
       <About />
     </main>
