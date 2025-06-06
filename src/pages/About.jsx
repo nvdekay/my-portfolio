@@ -53,15 +53,19 @@ function About() {
                         <h3 className="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
                         <ul className="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8 text-left">
                             <li>
-                                <span className="font-medium">Programming languages: </span>
+                                <span className="font-bold">Languages: </span>
+                                <span>English (IELTS 6.5), Vietnamese (mother tongue)</span>
+                            </li>
+                            <li>
+                                <span className="font-bold">Programming languages: </span>
                                 <span>C, Java, Javascript/Typescript, SQL</span>
                             </li>
                             <li>
-                                <span className="font-medium">Libraries and frameworks: </span>
+                                <span className="font-bold">Libraries and frameworks: </span>
                                 <span>ReactJS, NextJS, Spring Boot, Tailwind CSS</span>
                             </li>
                             <li>
-                                <span className="font-medium">Tools: </span>
+                                <span className="font-bold">Tools: </span>
                                 <span>Visual Studio Code, IntelliJ IDEA, Git/Github, SQL Server, MySQL, Postman, Docker Desktop</span>
                             </li>
                         </ul>
