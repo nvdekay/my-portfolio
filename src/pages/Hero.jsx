@@ -5,6 +5,16 @@ import { motion } from 'framer-motion'
 function Hero() {
     const roles = ['Frontend Developer', 'Software Engineer', 'Backend Developer']
     const typedText = useTypedText(roles, 10, 1500)
+    const NavbarLinks = [
+        { id: 1, name: 'About', linkId: 'about' }
+    ];
+
+    const scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className='relative overflow-hidden min-h-[550px] sm:min-h-[600px] flex flex-col justify-center items-center lg:ml-60'>
@@ -55,13 +65,13 @@ function Hero() {
                         </div>
 
 
-                        <a href="#about" className='flex justify-center md:justify-start items-center w-full'>
-                            <button className="select-none border-4 border-black bg-gray-500 pb-[10px] transition ease-in-out transform hover:-translate-y-1 hover:shadow-lg active:pb-0 active:mb-[10px] active:translate-y-[10px] cursor-pointer">
+                        <div className='flex justify-center md:justify-start items-center w-full'>
+                            <button onClick={() => scrollToSection('about')} className="select-none border-4 border-black bg-gray-500 pb-[10px] transition ease-in-out transform hover:-translate-y-1 hover:shadow-lg active:pb-0 active:mb-[10px] active:translate-y-[10px] cursor-pointer">
                                 <div className="bg-[#dddddd] border-4 border-white px-4 py-[2px] text-[1.2em] tracking-[1px]">
                                     About me!
                                 </div>
                             </button>
-                        </a>
+                        </div>
                     </header>
                 </section>
 

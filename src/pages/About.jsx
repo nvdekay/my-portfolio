@@ -1,7 +1,18 @@
 import React from 'react';
-import { section } from 'framer-motion/client';
+import { link, section } from 'framer-motion/client';
 
 function About() {
+    const Link = [
+        { id: 1, name: 'Contact', linkId: 'contact' },
+    ]
+
+    const ScrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     return (
         <section
             id="about"
@@ -57,14 +68,13 @@ function About() {
 
                     </div>
                     <footer className="flex flex-row gap-4 flex-wrap justify-center lg:justify-start">
-                        <a
-                            href=""
+                        <div
                             className="flex justify-center items-center"
                         >
-                            <button className="inline-block px-2 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
+                            <button onClick={() => ScrollToSection(Link[0].linkId)} className="inline-block py-[3px] px-2 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
                                 Contact me!
                             </button>
-                        </a>
+                        </div>
                         <a
                             href="https://drive.google.com/file/d/1ymaK0DjPnRdvP0oMgAxGSO7b-eK81hvW/view?usp=drive_link"
                             download={true}
