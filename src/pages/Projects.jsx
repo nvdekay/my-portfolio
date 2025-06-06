@@ -58,7 +58,7 @@ function Projects() {
             title: 'My Portfolio',
             description: 'A personal portfolio website built with ReactJS, Vite, TailwindCSS and Framer Motion, showcasing my skills and projects in a visually appealing and user-friendly interface.',
             technologies: ['ReactJS', 'Vite', 'TailwindCSS', 'Framer Motion', 'EmailJS'],
-            link: 'https://khanhnvd.vercel.app/'
+            link: 'https://khanhnvd.site/'
         },
         {
             image: 'assets/images/projects/project.png',
