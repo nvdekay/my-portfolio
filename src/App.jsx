@@ -15,14 +15,14 @@ const App = () => {
     })
   })
   return (
-    <main className='bg-zinc-800'>
+    <div className='bg-zinc-800'>
       <Navbar />
       <Hero />
       <About />
       <Projects />
       <Certificates />
       <Contact />
-    </main>
+    </div>
   )
 }
 

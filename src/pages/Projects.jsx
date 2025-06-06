@@ -61,9 +61,9 @@ function Projects() {
             link: 'https://khanhnvd.site/'
         },
         {
-            image: 'assets/images/projects/project.png',
+            image: 'assets/images/projects/mavent.png',
             title: 'Mavent',
-            description: 'A  role-based platform enabling event operations from Super Admin to Participant. Developed key features like event dashboards, task and document management, user role control, and multi-role registration workflows.',
+            description: 'An event management role-based platform enabling event operations from Super Admin to Participant. Developed key features like event dashboards, task and document management, user role control, and multi-role registration workflows.',
             technologies: ['ReactJS', 'TailwindCSS', 'Spring Boot', 'Spring JPA/Hibernate', 'MySQL'],
             link: 'https://github.com/nphi1410/Mavent'
         },

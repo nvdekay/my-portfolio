@@ -71,8 +71,8 @@ function About() {
                         <div
                             className="flex justify-center items-center"
                         >
-                            <button onClick={() => ScrollToSection(Link[0].linkId)} className="inline-block py-[3px] px-2 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#ff5252] hover:border-[#ff5252] hover:shadow-[5px_5px_0_0_#ff5252] active:bg-[#fcf414] active:shadow-none active:translate-y-[4px]">
-                                Contact me!
+                            <button onClick={() => ScrollToSection(Link[0].linkId)} className="inline-block py-[6px] px-4 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#000000] hover:border-[#6c95f5] hover:shadow-[5px_5px_0_0_#6c95f5] active:bg-[#a9a8aa] active:shadow-none active:translate-y-[4px]">
+                                Contact me
                             </button>
                         </div>
                         <a
