@@ -54,32 +54,39 @@ const ProjectCard = ({ image, title, description, technologies, link }) => {
 function Projects() {
     const listProjects = [
         {
-            image: 'assets/images/projects/project.png',
+            image: 'assets/images/projects/portfolio.png',
             title: 'My Portfolio',
             description: 'A personal portfolio website built with ReactJS, Vite, TailwindCSS and Framer Motion, showcasing my skills and projects in a visually appealing and user-friendly interface.',
-            technologies: ['ReactJS', 'Vite', 'TailwindCSS', 'Framer Motion'],
+            technologies: ['ReactJS', 'Vite', 'TailwindCSS', 'Framer Motion', 'EmailJS'],
             link: 'https://khanhnvd.vercel.app/'
         },
         {
             image: 'assets/images/projects/project.png',
             title: 'Mavent',
-            description: 'A role-based platform enabling event operations from Super Admin to Participant. Developed key features like event dashboards, task and document management, user role control, and multi-role registration workflows.',
-            technologies: ['ReactJS', 'TailwindCSS', 'Spring Boot', 'MySQL'],
+            description: 'A  role-based platform enabling event operations from Super Admin to Participant. Developed key features like event dashboards, task and document management, user role control, and multi-role registration workflows.',
+            technologies: ['ReactJS', 'TailwindCSS', 'Spring Boot', 'Spring JPA/Hibernate', 'MySQL'],
             link: 'https://github.com/nphi1410/Mavent'
         },
         {
-            image: 'assets/images/projects/project.png',
+            image: 'assets/images/projects/boostyourstyle.png',
             title: 'BoostYourStyle',
             description: 'A full-stack e-commerce website built with Java (Servlet, JSP, JSTL, JDBC) and Bootstrap, featuring separate user and admin interfaces for a complete online shopping experience.',
             technologies: ['Servlet', 'JSP', 'Bootstrap', 'JDBC', 'SQL Server'],
             link: 'https://github.com/nvdekay/boost-your-style'
         },
         {
-            image: 'assets/images/projects/project.png',
-            title: 'HelloWorld',
-            description: 'A simple web application built with HTML, CSS, and JavaScript, showcasing a basic user interface and functionality.',
+            image: 'assets/images/projects/manutd-landing.png',
+            title: 'Manchester United Landing Page',
+            description: 'A landing page to introduce Manchester United - an English football club.',
             technologies: ['HTML', 'CSS', 'JavaScript'],
-            link: ''
+            link: 'https://manutd-landingpage.vercel.app/'
+        },
+        {
+            image: 'assets/images/projects/music-player.png',
+            title: 'Music App',
+            description: 'A music app build with HTML, CSS, and JavaScript for learning purpose.',
+            technologies: ['HTML', 'CSS', 'JavaScript'],
+            link: 'https://music-player-red-six.vercel.app/'
         }
     ]
     return (
