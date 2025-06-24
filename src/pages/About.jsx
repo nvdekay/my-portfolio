@@ -58,11 +58,11 @@ function About() {
                             </li>
                             <li>
                                 <span className="font-bold">Programming languages: </span>
-                                <span>C, Java, Javascript/Typescript, SQL</span>
+                                <span>C, Java, Javascript, SQL</span>
                             </li>
                             <li>
                                 <span className="font-bold">Libraries and frameworks: </span>
-                                <span>ReactJS, NextJS, Spring Boot, Tailwind CSS</span>
+                                <span>ReactJS, Spring Boot, Tailwind CSS</span>
                             </li>
                             <li>
                                 <span className="font-bold">Tools: </span>
@@ -80,7 +80,7 @@ function About() {
                             </button>
                         </div>
                         <a
-                            href="https://drive.google.com/file/d/1ymaK0DjPnRdvP0oMgAxGSO7b-eK81hvW/view?usp=drive_link"
+                            href="https://drive.google.com/file/d/1YxwzaQpsqE6TfJPNrVupevrjhqFKSB3R/view?usp=sharing"
                             download={true}
                             target="_blank"
                             rel="noopener noreferrer"
