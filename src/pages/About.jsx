@@ -80,7 +80,7 @@ function About() {
                             </button>
                         </div>
                         <a
-                            href="https://drive.google.com/file/d/1YxwzaQpsqE6TfJPNrVupevrjhqFKSB3R/view?usp=sharing"
+                            href="https://drive.google.com/file/d/1YQehnWBD72dv0O5VQZKkRkYjZtR5N7wO/view?usp=sharing"
                             download={true}
                             target="_blank"
                             rel="noopener noreferrer"

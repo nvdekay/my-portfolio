@@ -41,7 +41,7 @@ function Navbar() {
         </div>
         <div className="text-sm text-gray-400 text-center mt-10">
           <span className='font-bold'>&copy; nvdeekay.07</span> <br />
-          Last updated: 6/6/2025
+          Last updated: 14/8/2025
         </div>
       </aside>
 
