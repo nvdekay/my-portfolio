@@ -1,28 +1,46 @@
-import { React, useEffect } from 'react'
+// src/App.jsx
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Hero from './pages/Hero'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Certificates from './pages/Certificates'
+import Contact from './pages/Contact'
+import Navbar from './components/Navbar'
+import Chatbot from './pages/Chatbot'
+import AdminDashboard from './pages/AdminDashboard'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import About from './pages/About'
-import Navbar from './components/Navbar'
-import Projects from './pages/Projects'
-import Contact from './pages/Contact'
-import Certificates from './pages/Certificates'
 
 const App = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000
     })
-  })
+  }, [])
+
   return (
-    <div className='bg-zinc-800'>
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Certificates />
-      <Contact />
-    </div>
+    <Router>
+      <div className='bg-zinc-800'>
+        <Routes>
+          {/* Portfolio Routes */}
+          <Route path="/" element={
+            <>
+              <Navbar />
+              <Hero />
+              <About />
+              <Projects />
+              <Certificates />
+              <Contact />
+              <Chatbot />
+            </>
+          } />
+          
+          {/* Admin Route */}
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
