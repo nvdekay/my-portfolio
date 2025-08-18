@@ -1,10 +1,12 @@
-import React from 'react';
-import { link, section } from 'framer-motion/client';
+// src/pages/About.jsx
+import React from 'react'
+import { usePersonalInfo, useSkills, useSiteSettings } from '../hooks/usePortfolioData'
+import ErrorMessage from '../components/ErrorMessage'
 
 function About() {
-    const Link = [
-        { id: 1, name: 'Contact', linkId: 'contact' },
-    ]
+    const { data: personalInfo, loading: personalLoading, error: personalError } = usePersonalInfo()
+    const { data: skills, loading: skillsLoading, error: skillsError } = useSkills()
+    const { data: settings } = useSiteSettings()
 
     const ScrollToSection = (id) => {
         const section = document.getElementById(id);
@@ -12,6 +14,21 @@ function About() {
             section.scrollIntoView({ behavior: 'smooth' });
         }
     }
+
+    if (personalError || skillsError) {
+        return <ErrorMessage message="Error loading about data" />
+    }
+
+    const person = personalInfo?.[0] || {}
+    
+    // Group skills by category
+    const skillsByCategory = skills?.reduce((acc, skill) => {
+        if (!acc[skill.category]) {
+            acc[skill.category] = []
+        }
+        acc[skill.category].push(skill)
+        return acc
+    }, {}) || {}
 
     return (
         <section
@@ -25,12 +42,10 @@ function About() {
                     className='relative flex justify-center items-center h-full'
                 >
                     <div className="z-10 relative">
-                        {/* Hiệu ứng nền gradient glow */}
                         <div className="absolute rounded-full -inset-4 bg-gradient-to-br from-[#6d2897] via-[#6c95f5] to-[#bb61c5] blur-xl opacity-60 animate-pulse-slow"></div>
-
                         <img
-                            src="/assets/images/avatars/about.png"
-                            alt="Your Photo"
+                            src={person.about_image_url || "/assets/images/avatars/about.png"}
+                            alt="About Photo"
                             className='relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[500px] md:h-[500px] object-cover rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105'
                         />
                     </div>
@@ -44,7 +59,7 @@ function About() {
                     <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
                     <header className='flex flex-col items-start'>
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-                            About me
+                            {settings.about_title || 'About me'}
                         </h1>
                         <hr className="border-t-2 border-[#9c3fda] w-1/4 mb-6 sm:mb-8 self-start" />
                     </header>
@@ -52,35 +67,28 @@ function About() {
                     <div className="flex flex-col items-start">
                         <h3 className="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
                         <ul className="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8 text-left">
-                            <li>
-                                <span className="font-bold">Languages: </span>
-                                <span>English (IELTS 6.5), Vietnamese (mother tongue)</span>
-                            </li>
-                            <li>
-                                <span className="font-bold">Programming languages: </span>
-                                <span>C, Java, Javascript, SQL</span>
-                            </li>
-                            <li>
-                                <span className="font-bold">Libraries and frameworks: </span>
-                                <span>ReactJS, Spring Boot, Tailwind CSS</span>
-                            </li>
-                            <li>
-                                <span className="font-bold">Tools: </span>
-                                <span>Visual Studio Code, IntelliJ IDEA, Git/Github, SQL Server, MySQL, Postman, Docker Desktop</span>
-                            </li>
+                            {Object.entries(skillsByCategory).map(([category, categorySkills]) => (
+                                <li key={category}>
+                                    <span className="font-bold">{category}: </span>
+                                    <span>
+                                        {categorySkills.map(skill => skill.name).join(', ')}
+                                    </span>
+                                </li>
+                            ))}
                         </ul>
-
                     </div>
+                    
                     <footer className="flex flex-row gap-4 flex-wrap justify-center lg:justify-start">
-                        <div
-                            className="flex justify-center items-center"
-                        >
-                            <button onClick={() => ScrollToSection(Link[0].linkId)} className="inline-block py-[6px] px-4 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#000000] hover:border-[#6c95f5] hover:shadow-[5px_5px_0_0_#6c95f5] active:bg-[#a9a8aa] active:shadow-none active:translate-y-[4px]">
+                        <div className="flex justify-center items-center">
+                            <button 
+                                onClick={() => ScrollToSection('contact')} 
+                                className="inline-block py-[6px] px-4 text-lg border-2 border-black rounded-[10px] shadow-[5px_5px_0_0_#000] transition-all duration-300 ease-in-out cursor-pointer hover:bg-white hover:text-[#000000] hover:border-[#6c95f5] hover:shadow-[5px_5px_0_0_#6c95f5] active:bg-[#a9a8aa] active:shadow-none active:translate-y-[4px]"
+                            >
                                 Contact me
                             </button>
                         </div>
                         <a
-                            href="https://drive.google.com/file/d/1YQehnWBD72dv0O5VQZKkRkYjZtR5N7wO/view?usp=sharing"
+                            href={person.resume_url}
                             download={true}
                             target="_blank"
                             rel="noopener noreferrer"

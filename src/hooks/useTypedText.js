@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export const useTypedText = (roles, typingSpeed = 0, delayBetween = 1800) => {
+export const useTypedText = (roles, typingSpeed = 10000, delayBetween = 2000 ) => {
     const [text, setText] = useState('')
     const [roleIndex, setRoleIndex] = useState(0)
     const [charIndex, setCharIndex] = useState(0)
