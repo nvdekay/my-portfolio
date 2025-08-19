@@ -1,4 +1,4 @@
-// src/services/chatbotService.js - FIXED VERSION WITH FALLBACK
+// src/services/chatbotService.js
 import { supabase } from '../lib/supabase'
 
 let genAI = null
@@ -102,7 +102,7 @@ export class ChatbotService {
         }
 
         // Greeting responses
-        if (lowercaseMessage.includes('xin chào') || lowercaseMessage.includes('Hello') || lowercaseMessage.includes('Hi')) {
+        if (lowercaseMessage.includes('xin chào') || lowercaseMessage.includes('hello') || lowercaseMessage.includes('hi') || lowercaseMessage.includes('chào') || lowercaseMessage.includes('greet') || lowercaseMessage.includes('greet me')) {
             return `Xin chào bạn! 👋 Rất vui được gặp!\n\nTôi là AI assistant của ${personalInfo?.display_name || 'Khanh'}. Tôi có thể giúp bạn tìm hiểu về:\n\n• Kỹ năng và công nghệ\n• Dự án đã thực hiện\n• Kinh nghiệm làm việc\n• Cách liên hệ\n\nBạn muốn biết gì đầu tiên? 😊`
         }
 
@@ -124,10 +124,10 @@ export class ChatbotService {
         const { personalInfo, skills, projects, certificates, knowledgeBase } = context
         const relevantKnowledge = this.searchKnowledge(userMessage, knowledgeBase)
 
-        const systemPrompt = `Bạn là AI assistant thân thiện cho portfolio của ${personalInfo?.name || 'Nguyen Vu Dang Khanh'}. 
+        const systemPrompt = `Bạn là AI assistant thân thiện cho portfolio của ${personalInfo?.name || 'Nguyễn Vũ Đăng Khánh'}. 
 
 THÔNG TIN CÁ NHÂN:
-- Tên: ${personalInfo?.display_name || 'Nguyen Vu Dang Khanh'}
+- Tên: ${personalInfo?.display_name || 'Nguyễn Vũ Đăng Khánh'}
 - Chức danh: ${personalInfo?.title || 'Full Stack Developer'}
 - Bio: ${personalInfo?.bio || 'Passionate developer với kinh nghiệm web development'}
 - Location: ${personalInfo?.location || 'Vietnam'}
@@ -148,7 +148,7 @@ HƯỚNG DẪN:
 1. Trả lời bằng tiếng Việt thân thiện, chuyên nghiệp
 2. Sử dụng emoji phù hợp 
 3. Trả lời ngắn gọn (tối đa 150 từ)
-4. Nếu không biết, gợi ý cách liên hệ
+4. Nếu không biết, gợi ý cách liên hệ thông qua email hoặc form contact
 5. Luôn nhiệt tình và hỗ trợ tích cực
 
 Câu hỏi: ${userMessage}`
@@ -186,7 +186,7 @@ Câu hỏi: ${userMessage}`
                 response_time_ms: Date.now()
             }])
         } catch (error) {
-            console.error('❌ Error saving chat history:', error)
+            console.error('Error saving chat history:', error)
         }
     }
 
@@ -206,5 +206,4 @@ Câu hỏi: ${userMessage}`
     }
 }
 
-// Export both for flexibility
 export default ChatbotService

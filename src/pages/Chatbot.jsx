@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useChatbot } from '../hooks/useChatbot'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 const Message = ({ message }) => {
     const isBot = message.role === 'bot'
@@ -14,13 +16,13 @@ const Message = ({ message }) => {
         >
             {isBot && (
                 <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white mr-2 shadow">
-                    <img src="/assets/images/avatars/chatbot.png" alt="Bot Icon" className="w-6 h-6" />
+                    <img src="/assets/images/avatars/chatbot.png" alt="Bot Icon" className="w-10 h-10" />
                 </div>
             )}
 
             <div className="max-w-[75%]">
                 <div
-                    className={`px-4 py-2 rounded-2xl text-sm leading-relaxed shadow-md ${isBot
+                    className={`px-4 py-2 rounded-2xl text-sm sm:text-base leading-relaxed shadow-md ${isBot
                         ? 'bg-gray-100 text-gray-800 rounded-bl-none'
                         : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-br-none'
                         }`}
@@ -28,7 +30,7 @@ const Message = ({ message }) => {
                     {message.content}
                 </div>
                 <p
-                    className={`text-[11px] mt-1 ${isBot ? 'text-left text-gray-400' : 'text-right text-gray-400'
+                    className={`text-[10px] sm:text-[11px] mt-1 ${isBot ? 'text-left text-gray-400' : 'text-right text-gray-400'
                         }`}
                 >
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -36,8 +38,8 @@ const Message = ({ message }) => {
             </div>
 
             {!isBot && (
-                <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gray-400 flex items-center justify-center text-white ml-2 shadow">
-                    👤
+                <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white ml-2 shadow">
+                    <img src="/assets/images/avatars/conan.png" alt="User Icon" className="w-10 h-10" />
                 </div>
             )}
         </motion.div>
@@ -47,7 +49,7 @@ const Message = ({ message }) => {
 const TypingIndicator = () => (
     <div className="flex items-center mb-4">
         <div className="w-9 h-9 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white mr-2 shadow">
-            🤖
+            <img src="/assets/images/avatars/chatbot.png" alt="Bot Icon" className="w-6 h-6" />
         </div>
         <div className="bg-gray-100 rounded-2xl px-4 py-2 shadow-md flex space-x-1">
             {[0, 0.2, 0.4].map((delay, i) => (
@@ -79,7 +81,7 @@ const QuickActions = ({ onQuickAction }) => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => onQuickAction(action)}
-                        className="text-xs bg-white hover:bg-blue-50 text-blue-600 px-3 py-1 rounded-full border border-blue-200 shadow-sm"
+                        className="text-xs sm:text-sm bg-white hover:bg-blue-50 text-blue-600 px-3 py-1 rounded-full border border-blue-200 shadow-sm"
                     >
                         {action}
                     </motion.button>
@@ -133,7 +135,7 @@ const Chatbot = () => {
         <>
             {/* Floating Toggle Button */}
             <motion.button
-                className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-full shadow-lg z-[9999]"
+                className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-gradient-to-r p-3 sm:p-4 z-[9999] flex flex-col items-center"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
@@ -159,13 +161,25 @@ const Chatbot = () => {
                             animate={{ rotate: 0, opacity: 1 }}
                             exit={{ rotate: -180, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="text-xl"
+                            className="relative flex flex-col items-center"
                         >
-                            💬
+                            {/* Bubble chat */}
+                            <div className="absolute -top-12 sm:-top-14 bg-white text-gray-800 px-2 sm:px-3 py-1.5 sm:py-2 rounded-2xl shadow-lg text-xs sm:text-sm max-w-[80vw] sm:max-w-none text-center">
+                                Hỏi tui đi nha. Cái gì cũng biết hết á!
+                                <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 shadow-sm"></div>
+                            </div>
+
+                            {/* Chatbot icon */}
+                            <img
+                                src="/assets/images/avatars/chatbot.png"
+                                alt="Chat Icon"
+                                className="w-20 sm:w-28 md:w-36 h-auto"
+                            />
                         </motion.div>
                     )}
                 </AnimatePresence>
             </motion.button>
+
 
             {/* Chat Window */}
             <AnimatePresence>
@@ -175,26 +189,34 @@ const Chatbot = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 100, scale: 0.95 }}
                         transition={{ duration: 0.3, ease: 'easeOut' }}
-                        className="fixed bottom-24 right-6 w-[90vw] max-w-md h-[70vh] bg-white rounded-2xl shadow-2xl z-[9998] flex flex-col overflow-hidden"
+                        className="
+                            fixed bottom-24 right-4 sm:right-6 
+                            w-[95vw] sm:w-[90vw] md:w-[420px] lg:w-[480px] 
+                            h-[65vh] sm:h-[70vh] md:h-[75vh] 
+                            bg-white rounded-2xl shadow-2xl z-[9998] 
+                            flex flex-col overflow-hidden
+                        "
                     >
                         {/* Header */}
-                        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 flex items-center justify-between">
+                        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 sm:p-4 flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                                <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-xl">🤖</div>
+                                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-lg sm:text-xl">
+                                    <img src="/assets/images/avatars/chatbot.png" alt="Bot Icon" className="w-8 h-8" />
+                                </div>
                                 <div>
-                                    <h3 className="font-semibold text-lg text-white">Deekay Assistant</h3>
-                                    <p className="text-xs text-white/80 flex items-center">
+                                    <h3 className="font-semibold text-sm sm:text-base md:text-lg text-white">Deekay Assistant</h3>
+                                    <p className="text-[10px] sm:text-xs md:text-sm text-white/80 flex items-center">
                                         <span className={`h-2 w-2 rounded-full mr-1 ${isReady ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`}></span>
                                         {isReady ? 'Online' : 'Offline...'}
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex items-center space-x-3 text-sm">
+                            <div className="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
                                 <button
                                     onClick={clearChat}
                                     className="px-2 py-1 rounded-lg bg-white/20 hover:bg-white/30 transition"
                                 >
-                                    Làm mới
+                                    New Chat
                                 </button>
                                 <button onClick={() => setIsOpen(false)} className="hover:text-gray-200">
                                     ✕
@@ -203,8 +225,8 @@ const Chatbot = () => {
                         </div>
 
                         {/* Messages */}
-                        <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
-                            {messages.map((message, index) => (
+                        <div className="flex-1 overflow-y-auto p-3 sm:p-4 bg-gray-50">
+                            {messages.map((message) => (
                                 <Message key={message.id} message={message} />
                             ))}
 
@@ -221,7 +243,7 @@ const Chatbot = () => {
                         </div>
 
                         {/* Input */}
-                        <div className="border-t bg-white p-3">
+                        <div className="border-t bg-white p-2 sm:p-3">
                             <div className="flex items-center space-x-2">
                                 <textarea
                                     ref={inputRef}
@@ -229,7 +251,7 @@ const Chatbot = () => {
                                     onChange={(e) => setInputMessage(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     placeholder="Nhập tin nhắn..."
-                                    className="flex-1 border border-gray-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                    className="flex-1 border border-gray-300 rounded-xl px-2 sm:px-3 py-2 text-xs sm:text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                                     rows="1"
                                     disabled={isLoading || !isReady}
                                     style={{ maxHeight: '100px' }}
@@ -239,18 +261,18 @@ const Chatbot = () => {
                                     whileTap={{ scale: 0.95 }}
                                     onClick={handleSendMessage}
                                     disabled={isLoading || !inputMessage.trim() || !isReady}
-                                    className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-2 rounded-xl shadow hover:shadow-md disabled:opacity-50"
+                                    className="bg-red-500 text-white p-2 rounded-xl hover:shadow-md hover:cursor-pointer"
                                 >
                                     {isLoading ? (
                                         <motion.div
                                             animate={{ rotate: 360 }}
                                             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                                            className="w-5 h-5"
+                                            className="w-4 h-4 sm:w-5 sm:h-5"
                                         >
                                             ⟳
                                         </motion.div>
                                     ) : (
-                                        <div className="w-5 h-5">➤</div>
+                                        <div className="w-4 h-4 sm:w-5 sm:h-5"><FontAwesomeIcon icon={faPaperPlane} className='mb-[2px]' /></div>
                                     )}
                                 </motion.button>
                             </div>
