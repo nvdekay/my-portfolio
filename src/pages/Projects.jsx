@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion'
 import { useProjectsWithTech, useSiteSettings } from '../hooks/usePortfolioData'
 import ErrorMessage from '../components/ErrorMessage'
+import { useState, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const ProjectCard = ({ project }) => {
     const technologies = project.technologies || []
-    
+
     return (
         <motion.article 
             initial={{ opacity: 0, y: 20 }}
@@ -15,7 +18,7 @@ const ProjectCard = ({ project }) => {
         >
             <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#3cbff5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
 
-            <div className='z-10'>
+            <div className='z-10 flex flex-col h-full'> {/* Thêm flex-col và h-full */}
                 <figure className='relative'>
                     <img 
                         src={project.image_url} 
@@ -52,16 +55,16 @@ const ProjectCard = ({ project }) => {
                     )}
                 </figure>
                 
-                <div className="px-6 py-4 relative h-full flex flex-col">
-                    <header>
+                <div className="px-6 py-4 relative h-full flex flex-col"> {/* Thêm flex-col */}
+                    <header className="flex-grow"> {/* Thêm flex-grow */}
                         <h3 className="text-white font-bold text-xl mb-2">{project.title}</h3>
                     </header>
 
-                    <p className="text-gray-200 text-base mb-4">{project.description}</p>
+                    <p className="text-gray-200 text-base mb-4 flex-grow">{project.description}</p> {/* Thêm flex-grow */}
 
                     {/* Tech Stack */}
                     {technologies.length > 0 && (
-                        <div className="mb-0 pt-4">
+                        <div className="mt-auto pt-4"> {/* Đặt mt-auto để đẩy xuống cuối */}
                             <div className="text-teal-500 font-semibold">Tech Stack:</div>
                             <div className="flex flex-wrap gap-2 mt-1">
                                 {technologies.map((tech) => (
@@ -83,13 +86,32 @@ const ProjectCard = ({ project }) => {
 };
 
 function Projects() {
-    const { data: projects, loading, error } = useProjectsWithTech()
-    const { data: settings } = useSiteSettings()
-
+    const { data: projects, loading, error } = useProjectsWithTech();
+    const { data: settings } = useSiteSettings();
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 6;
 
     if (error) {
-        return <ErrorMessage message="Error loading projects" />
+        return <ErrorMessage message="Error loading projects" />;
     }
+
+    // Sắp xếp các project theo created_at giảm dần
+    const sortedProjects = useMemo(() => {
+        if (!projects) return [];
+        return [...projects].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    }, [projects]);
+
+    const totalPages = Math.ceil(sortedProjects.length / pageSize);
+    const paginatedProjects = sortedProjects.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+    );
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        // Có thể thêm scroll to top khi chuyển trang
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <main id='projects' className='p-4 ml-0 lg:ml-60 min-h-screen'>
@@ -123,15 +145,46 @@ function Projects() {
                 data-aos-delay='500'
                 className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-36 sm:mt-64 px-6 sm:px-12 lg:px-24'
             >
-                {projects?.map((project) => (
-                    <ProjectCard
-                        key={project.id}
-                        project={project}
-                    />
-                ))}
+                {paginatedProjects.length > 0 ? (
+                    paginatedProjects.map((project) => (
+                        <ProjectCard
+                            key={project.id}
+                            project={project}
+                        />
+                    ))
+                ) : (
+                    !loading && <div className="col-span-full text-center text-gray-400">Không có dự án nào để hiển thị.</div>
+                )}
             </section>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-4 mt-12 mb-24">
+                    <button
+                        onClick={() => handlePageChange(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="flex items-center gap-2 px-4 py-2 text-white border border-gray-600 rounded-full hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                        Previous
+                    </button>
+                    
+                    <span className="text-gray-400">
+                        Page {currentPage} of {totalPages}
+                    </span>
+
+                    <button
+                        onClick={() => handlePageChange(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        className="flex items-center gap-2 px-4 py-2 text-white border border-gray-600 rounded-full hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Next
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                </div>
+            )}
         </main>
-    )
+    );
 }
 
-export default Projects
+export default Projects;
