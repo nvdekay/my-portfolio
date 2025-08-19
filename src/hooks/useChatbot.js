@@ -87,7 +87,7 @@ export const useChatbot = () => {
       }
       
     } catch (err) {
-      console.error('❌ Chat error:', err)
+      console.error('Chat error:', err)
       
       // Create fallback error response
       const errorMsg = {
@@ -107,7 +107,7 @@ export const useChatbot = () => {
     setMessages([{
       id: 1,
       role: 'bot',
-      content: 'Xin chào! 👋 Tôi là AI assistant của Nguyễn Vũ Đăng Khánh. Bạn muốn biết gì cậu chủ của tôi?',
+      content: 'Xin chào! 👋 Tôi là AI assistant của Nguyễn Vũ Đăng Khánh. Bạn muốn biết gì về cậu chủ của tôi?',
       timestamp: new Date()
     }])
     setError(null)
