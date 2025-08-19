@@ -102,7 +102,7 @@ export class ChatbotService {
         }
 
         // Greeting responses
-        if (lowercaseMessage.includes('xin chào') || lowercaseMessage.includes('hello') || lowercaseMessage.includes('hi')) {
+        if (lowercaseMessage.includes('xin chào') || lowercaseMessage.includes('Hello') || lowercaseMessage.includes('Hi')) {
             return `Xin chào bạn! 👋 Rất vui được gặp!\n\nTôi là AI assistant của ${personalInfo?.display_name || 'Khanh'}. Tôi có thể giúp bạn tìm hiểu về:\n\n• Kỹ năng và công nghệ\n• Dự án đã thực hiện\n• Kinh nghiệm làm việc\n• Cách liên hệ\n\nBạn muốn biết gì đầu tiên? 😊`
         }
 

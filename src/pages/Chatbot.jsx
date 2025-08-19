@@ -14,7 +14,7 @@ const Message = ({ message }) => {
         >
             {isBot && (
                 <div className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white mr-2 shadow">
-                    <img src="../../public/chatbot.png" alt="Bot Icon" className="w-6 h-6" />
+                    <img src="/assets/images/avatars/chatbot.png" alt="Bot Icon" className="w-6 h-6" />
                 </div>
             )}
 
