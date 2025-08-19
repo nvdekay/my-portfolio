@@ -84,21 +84,9 @@ export class ChatbotService {
             return `Tôi có kinh nghiệm với các công nghệ chính sau: 🛠️\n\n${featuredSkills.map(skill => `• ${skill}`).join('\n')}\n\nBạn muốn biết chi tiết về công nghệ nào cụ thể?`
         }
 
-        // Projects questions
-        if (lowercaseMessage.includes('dự án') || lowercaseMessage.includes('project') || lowercaseMessage.includes('làm gì')) {
-            const featuredProjects = projects?.filter(p => p.is_featured)?.map(p => p.title) || ['Portfolio Website', 'Event Management System', 'E-commerce Platform']
-            return `Tôi đã thực hiện nhiều dự án thú vị: 🚀\n\n${featuredProjects.map(project => `• ${project}`).join('\n')}\n\nBạn muốn xem demo hay tìm hiểu chi tiết về dự án nào?`
-        }
-
         // Contact questions
         if (lowercaseMessage.includes('liên hệ') || lowercaseMessage.includes('contact') || lowercaseMessage.includes('email')) {
             return `Bạn có thể liên hệ với tôi qua: 📧\n\n• Email: ${personalInfo?.email || 'your-email@example.com'}\n• GitHub, LinkedIn, Facebook\n• Hoặc form contact trên website này\n\nTôi luôn sẵn sàng trả lời và thảo luận về cơ hội hợp tác!`
-        }
-
-        // Certificates questions
-        if (lowercaseMessage.includes('chứng chỉ') || lowercaseMessage.includes('certificate') || lowercaseMessage.includes('học')) {
-            const certTitles = certificates?.map(c => c.title) || ['Web Development', 'Software Development Lifecycle', 'UX Design']
-            return `Tôi có các chứng chỉ từ những khóa học chất lượng: 🏆\n\n${certTitles.map(cert => `• ${cert}`).join('\n')}\n\nTất cả đều giúp tôi nâng cao kỹ năng chuyên môn!`
         }
 
         // Greeting responses
