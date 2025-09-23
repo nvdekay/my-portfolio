@@ -48,7 +48,7 @@ function Hero() {
                             {settings.hero_title || 'Hello, I am'}
                         </h6>
                         <h1 className="text-[#bb65d3] text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 leading-tight">
-                            {person.display_name || 'Your Name'}
+                            {person.display_name}
                         </h1>
                         <h2 className='text-xl sm:text-4xl md:text-2xl font-bold text-white mb-3 flex justify-center md:justify-start'>
                             {settings.hero_subtitle || 'I am a'}{' '}

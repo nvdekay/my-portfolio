@@ -11,6 +11,7 @@ import Chatbot from './pages/Chatbot'
 import AdminDashboard from './pages/AdminDashboard'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Landing from './pages/Landing'
 
 const App = () => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const App = () => {
       <div className='bg-zinc-800'>
         <Routes>
           {/* Portfolio Routes */}
+          <Route path="/landing" element={<Landing />} />
           <Route path="/" element={
             <>
               <Navbar />
