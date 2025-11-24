@@ -3,7 +3,7 @@ import { useProjectsWithTech, useSiteSettings } from '../hooks/usePortfolioData'
 import ErrorMessage from '../components/ErrorMessage'
 import { useState, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faGlobe, faRocket, faMobileAlt, faBrain, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 const ProjectCard = ({ project, index }) => {
     const technologies = project.technologies || []
@@ -94,20 +94,39 @@ function Projects() {
     const { data: projects, loading, error } = useProjectsWithTech();
     const { data: settings } = useSiteSettings();
     const [currentPage, setCurrentPage] = useState(1);
+    const [activeFilter, setActiveFilter] = useState('ALL');
     const pageSize = 6;
+
+    // Filter options with icons
+    const filterOptions = [
+        { value: 'ALL', label: 'All Projects', icon: faLayerGroup },
+        { value: 'LANDING', label: 'Landing Pages', icon: faRocket },
+        { value: 'WEB', label: 'Web Apps', icon: faGlobe },
+        { value: 'APP', label: 'Mobile Apps', icon: faMobileAlt },
+        { value: 'AI', label: 'AI Projects', icon: faBrain }
+    ];
 
     if (error) {
         return <ErrorMessage message="Error loading projects" />;
     }
 
-    // Sắp xếp các project theo created_at giảm dần
-    const sortedProjects = useMemo(() => {
+    // Sort and filter projects
+    const filteredAndSortedProjects = useMemo(() => {
         if (!projects) return [];
-        return [...projects].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    }, [projects]);
+        
+        let filtered = [...projects];
+        
+        // Apply filter
+        if (activeFilter !== 'ALL') {
+            filtered = filtered.filter(project => project.type === activeFilter);
+        }
+        
+        // Sort by created_at descending
+        return filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    }, [projects, activeFilter]);
 
-    const totalPages = Math.ceil(sortedProjects.length / pageSize);
-    const paginatedProjects = sortedProjects.slice(
+    const totalPages = Math.ceil(filteredAndSortedProjects.length / pageSize);
+    const paginatedProjects = filteredAndSortedProjects.slice(
         (currentPage - 1) * pageSize,
         currentPage * pageSize
     );
@@ -117,7 +136,7 @@ function Projects() {
         // Scroll to projects section smoothly
         const projectsSection = document.getElementById('projects');
         if (projectsSection) {
-            const headerOffset = 100; // Offset để không bị che bởi header
+            const headerOffset = 100;
             const elementPosition = projectsSection.offsetTop;
             const offsetPosition = elementPosition - headerOffset;
 
@@ -126,6 +145,11 @@ function Projects() {
                 behavior: 'smooth'
             });
         }
+    };
+
+    const handleFilterChange = (filter) => {
+        setActiveFilter(filter);
+        setCurrentPage(1); // Reset to page 1 when filter changes
     };
 
     return (
@@ -155,25 +179,84 @@ function Projects() {
                 </header>
             </section>
 
+            {/* Filter Tabs */}
+            <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className='mt-24 mb-12 px-4'
+            >
+                <div className='max-w-4xl mx-auto'>
+                    <div className='flex flex-wrap justify-center gap-3'>
+                        {filterOptions.map((option) => {
+                            const projectCount = option.value === 'ALL' 
+                                ? projects?.length || 0 
+                                : projects?.filter(p => p.type === option.value).length || 0;
+                            
+                            return (
+                                <motion.button
+                                    key={option.value}
+                                    onClick={() => handleFilterChange(option.value)}
+                                    className={`
+                                        relative px-6 py-3 rounded-full font-medium text-sm
+                                        transition-all duration-300 overflow-hidden
+                                        border-2 backdrop-blur-sm
+                                        ${activeFilter === option.value
+                                            ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-transparent shadow-lg shadow-blue-500/50'
+                                            : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:border-gray-600 hover:bg-gray-700/50'
+                                        }
+                                    `}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <span className='flex items-center gap-2'>
+                                        <FontAwesomeIcon icon={option.icon} />
+                                        <span>{option.label}</span>
+                                        <span className={`
+                                            px-2 py-0.5 rounded-full text-xs font-bold
+                                            ${activeFilter === option.value
+                                                ? 'bg-white/20'
+                                                : 'bg-gray-700'
+                                            }
+                                        `}>
+                                            {projectCount}
+                                        </span>
+                                    </span>
+                                    
+                                    {/* Active indicator */}
+                                    {activeFilter === option.value && (
+                                        <motion.div
+                                            layoutId="activeFilter"
+                                            className='absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 -z-10 rounded-full'
+                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
+                                </motion.button>
+                            );
+                        })}
+                    </div>
+                </div>
+            </motion.section>
+
             <section
                 data-aos='fade-up'
                 data-aos-delay='500'
-                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-36 sm:mt-64 px-6 sm:px-12 lg:px-24'
+                className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 px-6 sm:px-12 lg:px-24'
             >
                 {/* Sử dụng AnimatePresence để handle smooth transitions khi chuyển trang */}
                 <AnimatePresence mode="wait">
                     {paginatedProjects.length > 0 ? (
                         <motion.div
-                            key={currentPage} // Key thay đổi khi chuyển trang để trigger animation
+                            key={`${currentPage}-${activeFilter}`} // Key thay đổi khi chuyển trang hoặc filter
                             className="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.3 }}
                         >
                             {paginatedProjects.map((project, index) => (
                                 <ProjectCard
-                                    key={`${project.id}-${currentPage}`} // Unique key cho mỗi trang
+                                    key={`${project.id}-${currentPage}-${activeFilter}`}
                                     project={project}
                                     index={index}
                                 />
@@ -182,12 +265,25 @@ function Projects() {
                     ) : (
                         !loading && (
                             <motion.div
-                                className="col-span-full text-center text-gray-400"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
+                                className="col-span-full text-center py-20"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                No projects found.
+                                <div className="flex flex-col items-center gap-4">
+                                    <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center">
+                                        <FontAwesomeIcon icon={faLayerGroup} className="text-4xl text-gray-600" />
+                                    </div>
+                                    <h3 className="text-xl font-semibold text-gray-400">
+                                        No projects found
+                                    </h3>
+                                    <p className="text-gray-500">
+                                        {activeFilter !== 'ALL' 
+                                            ? `No ${activeFilter.toLowerCase()} projects available yet.`
+                                            : 'No projects available yet.'
+                                        }
+                                    </p>
+                                </div>
                             </motion.div>
                         )
                     )}

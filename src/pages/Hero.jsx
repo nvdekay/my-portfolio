@@ -10,12 +10,15 @@ function Hero() {
     const { data: roles, loading: rolesLoading, error: rolesError } = useRoles()
     const { data: settings, loading: settingsLoading } = useSiteSettings()
 
-    // Extract roles for typing animation
-    const rolesList = roles ? roles.map(role => role.title) : ['Developer']
+    // Extract roles for typing animation - với fallback
+    const rolesList = roles && roles.length > 0 
+        ? roles.map(role => role.title) 
+        : ['Developer', 'Full Stack Developer']
+    
     const typedText = useTypedText(
         rolesList,
-        parseInt(settings.typing_speed) || 3000,
-        parseInt(settings.typing_delay) || 2500
+        parseInt(settings?.typing_speed) || 3000,
+        parseInt(settings?.typing_delay) || 2500
     )
 
     const scrollToSection = (id) => {

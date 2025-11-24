@@ -1,56 +1,104 @@
 // src/hooks/usePortfolioData.js
 import { useSupabaseQuery } from './useSupabaseQuery'
 
-// Personal Info Hook
+// Profile Hook (thay thế Personal Info)
 export const usePersonalInfo = () => {
-    return useSupabaseQuery('personal_info', {
+    return useSupabaseQuery('profile', {
         limit: 1
     })
 }
 
-// Social Links Hook
+// Content Blocks Hook - Generic hook for all content types
+export const useContentBlocks = (type) => {
+    return useSupabaseQuery('content_blocks', {
+        select: '*',
+        filter: { type: type },
+        orderBy: { column: 'display_order', ascending: true }
+    })
+}
+
+// Social Links Hook (từ content_blocks với type='social')
 export const useSocialLinks = () => {
-    return useSupabaseQuery('social_links', {
-        filter: { is_active: true },
-        orderBy: { column: 'display_order', ascending: true }
-    })
+    const { data, loading, error } = useContentBlocks('social')
+    return { 
+        data: data?.map(item => ({
+            id: item.id,
+            platform: item.title,
+            url: item.url,
+            icon_url: item.metadata?.icon_url || '',
+            display_order: item.display_order
+        })),
+        loading,
+        error
+    }
 }
 
-// Roles Hook (cho typing animation)
+// Roles Hook (từ content_blocks với type='role')
 export const useRoles = () => {
-    return useSupabaseQuery('roles', {
-        filter: { is_active: true },
-        orderBy: { column: 'display_order', ascending: true }
-    })
+    const { data, loading, error } = useContentBlocks('role')
+    return {
+        data: data?.map(item => ({
+            id: item.id,
+            title: item.title,
+            display_order: item.display_order
+        })),
+        loading,
+        error
+    }
 }
 
-// Skills Hook
+// Skills Hook (từ content_blocks với type='skill')
 export const useSkills = () => {
-    return useSupabaseQuery('skills', {
-        orderBy: { column: 'display_order', ascending: true }
-    })
+    const { data, loading, error } = useContentBlocks('skill')
+    return {
+        data: data?.map(item => ({
+            id: item.id,
+            name: item.title,
+            category: item.subtitle || 'General',
+            display_order: item.display_order,
+            is_featured: item.is_featured
+        })),
+        loading,
+        error
+    }
 }
 
-// Projects Hook
+// Projects Hook (từ content_blocks với type='project')
 export const useProjects = () => {
-    return useSupabaseQuery('projects', {
-        orderBy: { column: 'display_order', ascending: true }
-    })
+    const { data, loading, error } = useContentBlocks('project')
+    return {
+        data: data?.map(item => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            image_url: item.url,
+            demo_url: item.metadata?.demo_url || '',
+            github_url: item.metadata?.github_url || '',
+            type: item.metadata?.type || 'WEB',
+            display_order: item.display_order,
+            created_at: item.created_at
+        })),
+        loading,
+        error
+    }
 }
 
-// Certificates Hook
+// Certificates Hook (từ content_blocks với type='certificate')
 export const useCertificates = () => {
-    return useSupabaseQuery('certificates', {
-        orderBy: { column: 'display_order', ascending: true }
-    })
-}
-
-// Navigation Items Hook
-export const useNavigationItems = () => {
-    return useSupabaseQuery('navigation_items', {
-        filter: { is_active: true },
-        orderBy: { column: 'display_order', ascending: true }
-    })
+    const { data, loading, error } = useContentBlocks('certificate')
+    return {
+        data: data?.map(item => ({
+            id: item.id,
+            title: item.title,
+            issuer: item.subtitle || '',
+            description: item.description,
+            image_url: item.url,
+            link: item.metadata?.link || '',
+            display_order: item.display_order
+        })),
+        loading,
+        error
+    }
 }
 
 // Site Settings Hook
@@ -68,7 +116,21 @@ export const useSiteSettings = () => {
 
 // Projects with Technologies Hook
 export const useProjectsWithTech = () => {
-    return useSupabaseQuery('projects_with_technologies', {
-        orderBy: { column: 'display_order', ascending: true }
-    })
+    const { data, loading, error } = useContentBlocks('project')
+    return {
+        data: data?.map(item => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            image_url: item.url,
+            demo_url: item.metadata?.demo_url || '',
+            github_url: item.metadata?.github_url || '',
+            type: item.metadata?.type || 'WEB',
+            technologies: item.metadata?.technologies || [],
+            display_order: item.display_order,
+            created_at: item.created_at
+        })),
+        loading,
+        error
+    }
 }

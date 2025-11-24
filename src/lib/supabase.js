@@ -18,7 +18,7 @@ export const getPublicUrl = (bucket, path) => {
 // Test connection function
 export const testConnection = async () => {
   try {
-    const { data, error } = await supabase.from('personal_info').select('count').limit(1)
+    const { data, error } = await supabase.from('profile').select('count').limit(1)
     if (error) throw error
     console.log('✅ Supabase connection successful!')
     return true

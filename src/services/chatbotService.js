@@ -1,30 +1,55 @@
-// src/services/chatbotService.js
 import { supabase } from '../lib/supabase'
 
 let genAI = null
 
 export class ChatbotService {
-    // Get portfolio context từ Supabase
+    // Get portfolio context từ Supabase (updated for new schema)
     static async getPortfolioContext() {
         try {
             const [
-                { data: personalInfo },
-                { data: skills },
-                { data: projects },
-                { data: certificates },
-                { data: socialLinks },
-                { data: knowledgeBase }
+                { data: profileData },
+                { data: contentBlocks },
+                { data: chatData }
             ] = await Promise.all([
-                supabase.from('personal_info').select('*').limit(1),
-                supabase.from('skills').select('*'),
-                supabase.from('projects').select('*'),
-                supabase.from('certificates').select('*'),
-                supabase.from('social_links').select('*'),
-                supabase.from('chatbot_knowledge').select('*').eq('is_active', true)
+                supabase.from('profile').select('*').limit(1),
+                supabase.from('content_blocks').select('*'),
+                supabase.from('chat_data').select('*').eq('is_active', true)
             ])
 
+            // Group content blocks by type
+            const skills = contentBlocks?.filter(item => item.type === 'skill').map(item => ({
+                name: item.title,
+                category: item.subtitle || 'General'
+            })) || []
+
+            const projects = contentBlocks?.filter(item => item.type === 'project').map(item => ({
+                title: item.title,
+                description: item.description,
+                demo_url: item.metadata?.demo_url || '',
+                github_url: item.metadata?.github_url || ''
+            })) || []
+
+            const certificates = contentBlocks?.filter(item => item.type === 'certificate').map(item => ({
+                title: item.title,
+                issuer: item.subtitle || '',
+                description: item.description
+            })) || []
+
+            const socialLinks = contentBlocks?.filter(item => item.type === 'social').map(item => ({
+                platform: item.title,
+                url: item.url
+            })) || []
+
+            // Map chat_data to knowledgeBase format
+            const knowledgeBase = chatData?.map(item => ({
+                question: item.question,
+                answer: item.answer,
+                keywords: item.keywords || [],
+                category: item.category
+            })) || []
+
             return {
-                personalInfo: personalInfo?.[0],
+                personalInfo: profileData?.[0],
                 skills,
                 projects,
                 certificates,
@@ -164,14 +189,19 @@ Câu hỏi: ${userMessage}`
         }
     }
 
-    // Save chat history to Supabase
+    // Save chat history to Supabase (updated for contact_messages table)
     static async saveChatHistory(userMessage, botResponse, sessionId) {
         try {
-            await supabase.from('chat_history').insert([{
+            // Save to chat_data table as user interaction
+            await supabase.from('chat_data').insert([{
                 session_id: sessionId,
+                type: 'chat_history',
+                question: userMessage,
+                answer: botResponse,
                 user_message: userMessage,
                 bot_response: botResponse,
-                response_time_ms: Date.now()
+                response_time_ms: Date.now(),
+                is_active: true
             }])
         } catch (error) {
             console.error('Error saving chat history:', error)

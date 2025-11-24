@@ -6,6 +6,11 @@ export const useTypedText = (roles, typingSpeed = 10000, delayBetween = 2000 ) =
     const [charIndex, setCharIndex] = useState(0)
 
     useEffect(() => {
+        // Guard clause: nếu roles chưa load hoặc empty thì không làm gì
+        if (!roles || roles.length === 0) {
+            return
+        }
+
         const currentRole = roles[roleIndex]
 
         if (charIndex < currentRole.length) {
