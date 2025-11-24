@@ -1,15 +1,20 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useProjectsWithTech, useSiteSettings } from '../hooks/usePortfolioData'
 import ErrorMessage from '../components/ErrorMessage'
+import ProjectDetailModal from '../components/ProjectDetailModal'
 import { useState, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faGlobe, faRocket, faMobileAlt, faBrain, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faGlobe, faRocket, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
-const ProjectCard = ({ project, index }) => {
-    const technologies = project.technologies || []
+const ProjectCard = ({ project, index, onClick }) => {
+    // Sử dụng tech_stack từ metadata, fallback về technologies nếu không có
+    const techList = project.tech_stack && project.tech_stack.length > 0 
+        ? project.tech_stack 
+        : (project.technologies || []).map(t => t.name)
 
     return (
         <motion.article
+            onClick={() => onClick(project)}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
@@ -19,7 +24,7 @@ const ProjectCard = ({ project, index }) => {
                 ease: "easeOut"
             }}
             layout // Smooth layout changes
-            className='relative bg-gray-800 rounded overflow-hidden shadow-lg group w-full max-w-sm mx-auto'
+            className='relative bg-gray-800 rounded overflow-hidden shadow-lg group w-full max-w-sm mx-auto cursor-pointer hover:shadow-2xl hover:shadow-teal-500/30 transition-shadow duration-300'
         >
             <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#3cbff5] rounded-full blur-3xl opacity-50 -top-5 left-10"></div>
 
@@ -68,17 +73,16 @@ const ProjectCard = ({ project, index }) => {
                     <p className="text-gray-200 text-base mb-4 flex-grow">{project.description}</p>
 
                     {/* Tech Stack */}
-                    {technologies.length > 0 && (
+                    {techList.length > 0 && (
                         <div className="mt-auto pt-4">
                             <div className="text-teal-500 font-semibold">Tech Stack:</div>
                             <div className="flex flex-wrap gap-2 mt-1">
-                                {technologies.map((tech) => (
+                                {techList.map((tech, idx) => (
                                     <span
-                                        key={tech.id}
-                                        className="hover:bg-green-600 cursor-pointer bg-white/10 border border-white/20 rounded-[20px] text-white inline-block text-[12px] px-[10px] py-[3px] transition-all duration-300"
-                                        style={{ backgroundColor: tech.color + '20', borderColor: tech.color + '40' }}
+                                        key={idx}
+                                        className="bg-blue-500/20 border border-blue-500/40 rounded-[20px] text-blue-300 inline-block text-[12px] px-[10px] py-[3px] transition-all duration-300 hover:bg-blue-500/30"
                                     >
-                                        {tech.name}
+                                        {typeof tech === 'string' ? tech : tech.name}
                                     </span>
                                 ))}
                             </div>
@@ -95,15 +99,27 @@ function Projects() {
     const { data: settings } = useSiteSettings();
     const [currentPage, setCurrentPage] = useState(1);
     const [activeFilter, setActiveFilter] = useState('ALL');
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const pageSize = 6;
 
-    // Filter options with icons
+    // Handler để mở modal
+    const handleProjectClick = (project) => {
+        setSelectedProject(project);
+        setIsModalOpen(true);
+    };
+
+    // Handler để đóng modal
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedProject(null), 300); // Delay để animation hoàn thành
+    };
+
+    // Filter options - chỉ có 2 category: landing và website
     const filterOptions = [
         { value: 'ALL', label: 'All Projects', icon: faLayerGroup },
-        { value: 'LANDING', label: 'Landing Pages', icon: faRocket },
-        { value: 'WEB', label: 'Web Apps', icon: faGlobe },
-        { value: 'APP', label: 'Mobile Apps', icon: faMobileAlt },
-        { value: 'AI', label: 'AI Projects', icon: faBrain }
+        { value: 'website', label: 'Websites', icon: faGlobe },
+        { value: 'landing', label: 'Landing Pages', icon: faRocket }
     ];
 
     if (error) {
@@ -116,9 +132,9 @@ function Projects() {
         
         let filtered = [...projects];
         
-        // Apply filter
+        // Apply filter theo category từ metadata
         if (activeFilter !== 'ALL') {
-            filtered = filtered.filter(project => project.type === activeFilter);
+            filtered = filtered.filter(project => project.category === activeFilter);
         }
         
         // Sort by created_at descending
@@ -259,6 +275,7 @@ function Projects() {
                                     key={`${project.id}-${currentPage}-${activeFilter}`}
                                     project={project}
                                     index={index}
+                                    onClick={handleProjectClick}
                                 />
                             ))}
                         </motion.div>
@@ -321,6 +338,13 @@ function Projects() {
                     </button>
                 </motion.div>
             )}
+
+            {/* Project Detail Modal */}
+            <ProjectDetailModal
+                project={selectedProject}
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+            />
         </main>
     );
 }
