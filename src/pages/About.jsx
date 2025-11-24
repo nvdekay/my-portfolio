@@ -21,12 +21,13 @@ function About() {
 
     const person = personalInfo?.[0] || {}
     
-    // Group skills by category
+    // Group skills by category từ metadata
     const skillsByCategory = skills?.reduce((acc, skill) => {
-        if (!acc[skill.category]) {
-            acc[skill.category] = []
+        const category = skill.category || 'General'
+        if (!acc[category]) {
+            acc[category] = []
         }
-        acc[skill.category].push(skill)
+        acc[category].push(skill)
         return acc
     }, {}) || {}
 
@@ -64,14 +65,20 @@ function About() {
                         <hr className="border-t-2 border-[#9c3fda] w-1/4 mb-6 sm:mb-8 self-start" />
                     </header>
 
-                    <div className="flex flex-col items-start">
+                    <div className="flex flex-col items-start w-full mb-8">
                         <h3 className="text-tertiary-dark text-xl md:text-3xl font-medium mb-4 transition-all duration-300">Skills</h3>
-                        <ul className="text-tertiary-dark/70 leading-7 transition-all duration-300 list-disc ml-8 mb-8 text-left">
+                        
+                        <ul className="text-tertiary-dark/70 leading-8 transition-all duration-300 list-disc ml-8 text-left w-full">
                             {Object.entries(skillsByCategory).map(([category, categorySkills]) => (
-                                <li key={category}>
-                                    <span className="font-bold">{category}: </span>
+                                <li key={category} className="mb-2">
+                                    <span className="font-bold text-white">{category}:</span>{' '}
                                     <span>
-                                        {categorySkills.map(skill => skill.name).join(', ')}
+                                        {categorySkills.map((skill, index) => (
+                                            <span key={skill.id}>
+                                                {skill.name}
+                                                {index < categorySkills.length - 1 ? ', ' : ''}
+                                            </span>
+                                        ))}
                                     </span>
                                 </li>
                             ))}

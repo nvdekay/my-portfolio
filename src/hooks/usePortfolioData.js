@@ -54,7 +54,8 @@ export const useSkills = () => {
         data: data?.map(item => ({
             id: item.id,
             name: item.title,
-            category: item.subtitle || 'General',
+            category: item.metadata?.category || item.subtitle || 'General',
+            level: item.metadata?.level || '',
             display_order: item.display_order,
             is_featured: item.is_featured
         })),
