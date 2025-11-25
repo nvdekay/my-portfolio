@@ -61,19 +61,25 @@ function Hero() {
                         </h2>
 
                         <div className='flex items-center space-x-4 mb-6 justify-center md:justify-start'>
-                            {socialLinks?.map((social) => (
+                            {socialLinks && socialLinks.length > 0 && socialLinks.map((social) => (
                                 <a
                                     key={social.id}
-                                    href={social.url}
+                                    href={social.url || '#'}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title={social.platform}
                                 >
-                                    <img
-                                        src={social.icon_url}
-                                        alt={social.platform}
-                                        className='w-11 h-11'
-                                    />
+                                    {social.icon_url ? (
+                                        <img
+                                            src={social.icon_url}
+                                            alt={social.platform}
+                                            className='w-11 h-11'
+                                        />
+                                    ) : (
+                                        <div className='w-11 h-11 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center'>
+                                            <span className='text-white font-bold'>{social.platform?.[0]}</span>
+                                        </div>
+                                    )}
                                 </a>
                             ))}
                         </div>

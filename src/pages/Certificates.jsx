@@ -17,7 +17,7 @@ const CertificateCard = ({ image, title, issuer, description, link }) => (
         <div className="z-10">
             <figure className="relative">
                 <img
-                    src={image}
+                    src={image || '/assets/images/certificates/default.jpg'}
                     className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                     alt={title}
                 />

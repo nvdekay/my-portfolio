@@ -46,7 +46,10 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
                     />
 
                     {/* Modal */}
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+                    <div 
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+                        onClick={onClose}
+                    >
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -98,7 +101,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }) => {
                                 <div className="flex flex-wrap gap-4">
                                     {project.url && (
                                         <a
-                                            href={project.url}
+                                            href={project.url.startsWith('http') ? project.url : `https://${project.url}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-teal-500/50"

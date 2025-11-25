@@ -23,26 +23,46 @@ export const useProjectsWithTech = () => {
                 if (projectsError) throw projectsError
 
                 // Transform data to match expected format
-                const transformedData = projectsData?.map(item => ({
-                    id: item.id,
-                    title: item.title,
-                    description: item.description,
-                    long_description: item.long_description,
-                    image_url: item.url,
-                    demo_url: item.metadata?.demo_url || '',
-                    github_url: item.metadata?.github_url || '',
-                    category: item.metadata?.category || 'website',
-                    type: item.metadata?.type || 'WEB',
-                    tech_stack: item.metadata?.tech_stack || [],
-                    technologies: item.metadata?.technologies || [],
-                    start_date: item.metadata?.start_date || '',
-                    end_date: item.metadata?.end_date || '',
-                    duration_months: item.metadata?.duration_months || 0,
-                    display_order: item.display_order,
-                    is_featured: item.is_featured,
-                    created_at: item.created_at,
-                    updated_at: item.updated_at
-                })) || []
+                // Parse metadata JSON if it's a stringƯE
+                const transformedData = projectsData?.map(item => {
+                    // Parse metadata nếu cần
+                    const metadata = typeof item.metadata === 'string' 
+                        ? JSON.parse(item.metadata) 
+                        : (item.metadata || {});
+                    
+                    // Parse url nếu là JSON (một số database có thể lưu url dạng JSONB)
+                    let urlData = item.url;
+                    if (typeof urlData === 'string' && urlData.startsWith('{')) {
+                        try {
+                            urlData = JSON.parse(urlData);
+                        } catch (e) {
+                            // Nếu parse failed, giữ nguyên string
+                        }
+                    }
+
+                    return {
+                        id: item.id,
+                        title: item.title,
+                        description: item.description,
+                        long_description: item.long_description,
+                        // Nếu url là object, lấy các fields từ đó, nếu không dùng làm image_url
+                        image_url: typeof urlData === 'object' ? (urlData.image_url || '') : (urlData || ''),
+                        url: typeof urlData === 'object' ? (urlData.website_url || urlData.url || '') : '',
+                        github_url: typeof urlData === 'object' ? (urlData.github_url || '') : (metadata.github_url || ''),
+                        demo_url: metadata.demo_url || '',
+                        // Lấy thông tin từ metadata
+                        category: metadata.category || 'website',
+                        tech_stack: metadata.tech_stack || [],
+                        start_date: metadata.start_date || '',
+                        end_date: metadata.end_date || '',
+                        duration_months: metadata.duration_months || 0,
+                        // Các fields khác
+                        display_order: item.display_order,
+                        is_featured: item.is_featured,
+                        created_at: item.created_at,
+                        updated_at: item.updated_at
+                    };
+                }) || []
 
                 setData(transformedData)
             } catch (err) {
