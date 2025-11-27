@@ -65,7 +65,7 @@ const App = () => {
                   <Projects />
                   <Certificates />
                   <Contact />
-                  <Chatbot />
+                  {/* <Chatbot /> */}
                 </>
               }
             />
