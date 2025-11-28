@@ -3,7 +3,6 @@ import { useTypedText } from '../hooks/useTypedText'
 import ErrorMessage from '../components/ErrorMessage'
 
 function Hero() {
-    // Hard-coded social links with local images
     const socialLinks = [
         {
             id: 1,
