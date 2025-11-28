@@ -98,10 +98,9 @@ function Projects() {
   // Handler để đóng modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setTimeout(() => setSelectedProject(null), 300); // Delay để animation hoàn thành
+    setTimeout(() => setSelectedProject(null), 300);
   };
 
-  // Filter options - chỉ có 2 category: landing và website
   const filterOptions = [
     { value: "ALL", label: "All Projects", icon: faLayerGroup },
     { value: "website", label: "Websites", icon: faGlobe },
