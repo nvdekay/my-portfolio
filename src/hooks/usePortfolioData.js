@@ -17,22 +17,6 @@ export const useContentBlocks = (type) => {
     })
 }
 
-// Social Links Hook (từ content_blocks với type='social')
-export const useSocialLinks = () => {
-    const { data, loading, error } = useContentBlocks('social')
-    return { 
-        data: data?.map(item => ({
-            id: item.id,
-            platform: item.title,
-            url: item.url,
-            icon_url: item.metadata?.icon_url || '',
-            display_order: item.display_order
-        })),
-        loading,
-        error
-    }
-}
-
 // Roles Hook (từ content_blocks với type='role')
 export const useRoles = () => {
     const { data, loading, error } = useContentBlocks('role')

@@ -1,24 +1,50 @@
-import { motion } from 'framer-motion'
-import { usePersonalInfo, useSocialLinks, useRoles, useSiteSettings } from '../hooks/usePortfolioData'
+import { usePersonalInfo, useRoles, useSiteSettings } from '../hooks/usePortfolioData'
 import { useTypedText } from '../hooks/useTypedText'
 import ErrorMessage from '../components/ErrorMessage'
 
 function Hero() {
+    // Hard-coded social links with local images
+    const socialLinks = [
+        {
+            id: 1,
+            platform: 'GitHub',
+            url: 'https://github.com/nvdekay',
+            icon: '/assets/images/socials/github.png'
+        },
+        {
+            id: 2,
+            platform: 'LinkedIn',
+            url: 'https://www.linkedin.com/in/nvdeekay07/',
+            icon: '/assets/images/socials/linkedin.png'
+        },
+        {
+            id: 3,
+            platform: 'Facebook',
+            url: 'https://www.facebook.com/nvdeekay.07/',
+            icon: '/assets/images/socials/facebook.png'
+        },
+        {
+            id: 4,
+            platform: 'Instagram',
+            url: 'https://www.instagram.com/nvdeekay.07/',
+            icon: '/assets/images/socials/instagram.png'
+        }
+    ]
+
     // Fetch data from Supabase
     const { data: personalInfo, loading: personalLoading, error: personalError } = usePersonalInfo()
-    const { data: socialLinks, loading: socialLoading, error: socialError } = useSocialLinks()
     const { data: roles, loading: rolesLoading, error: rolesError } = useRoles()
     const { data: settings, loading: settingsLoading } = useSiteSettings()
 
     // Extract roles for typing animation - với fallback
     const rolesList = roles && roles.length > 0 
         ? roles.map(role => role.title) 
-        : ['Developer', 'Full Stack Developer']
+        : ['Frontend Developer', 'Backend Developer', 'Software Engineer', 'Full Stack Developer']
     
     const typedText = useTypedText(
         rolesList,
-        parseInt(settings?.typing_speed) || 3000,
-        parseInt(settings?.typing_delay) || 2500
+        parseInt(settings?.typing_speed) || 8000,
+        parseInt(settings?.typing_delay) || 5500
     )
 
     const scrollToSection = (id) => {
@@ -29,7 +55,7 @@ function Hero() {
     };
 
     // Error state
-    if (personalError || socialError || rolesError) {
+    if (personalError || rolesError) {
         return <ErrorMessage message="Error loading hero data" />
     }
 
@@ -61,25 +87,20 @@ function Hero() {
                         </h2>
 
                         <div className='flex items-center space-x-4 mb-6 justify-center md:justify-start'>
-                            {socialLinks && socialLinks.length > 0 && socialLinks.map((social) => (
+                            {socialLinks.map((social) => (
                                 <a
                                     key={social.id}
-                                    href={social.url || '#'}
+                                    href={social.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     title={social.platform}
+                                    className='transition-transform hover:scale-110 duration-300'
                                 >
-                                    {social.icon_url ? (
-                                        <img
-                                            src={social.icon_url}
-                                            alt={social.platform}
-                                            className='w-11 h-11'
-                                        />
-                                    ) : (
-                                        <div className='w-11 h-11 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center'>
-                                            <span className='text-white font-bold'>{social.platform?.[0]}</span>
-                                        </div>
-                                    )}
+                                    <img
+                                        src={social.icon}
+                                        alt={social.platform}
+                                        className='w-11 h-11 object-contain'
+                                    />
                                 </a>
                             ))}
                         </div>
