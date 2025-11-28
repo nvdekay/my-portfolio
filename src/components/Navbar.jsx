@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark, faHouseChimney, faAddressCard, faDiagramProject, faCertificate, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faHouseChimney, faAddressCard, faDiagramProject, faCertificate, faEnvelope, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,9 +8,10 @@ function Navbar() {
   const NavbarLinks = [
     { id: 1, icon: faHouseChimney, name: 'Home', linkId: 'home' },
     { id: 2, icon: faAddressCard, name: 'About', linkId: 'about' },
-    { id: 3, icon: faDiagramProject, name: 'Projects', linkId: 'projects' },
-    { id: 4, icon: faCertificate, name: 'Certificates', linkId: 'certificates' },
-    { id: 5, icon: faEnvelope, name: 'Contact', linkId: 'contact' },
+    { id: 3, icon: faFileAlt, name: 'Resume', linkId: 'resume' },
+    { id: 4, icon: faDiagramProject, name: 'Projects', linkId: 'projects' },
+    { id: 5, icon: faCertificate, name: 'Certificates', linkId: 'certificates' },
+    { id: 6, icon: faEnvelope, name: 'Contact', linkId: 'contact' },
   ];
 
   const scrollToSection = (id) => {

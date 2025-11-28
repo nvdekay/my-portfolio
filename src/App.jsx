@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Certificates from "./pages/Certificates";
 import Contact from "./pages/Contact";
+import Resume from "./pages/Resume";
 import Navbar from "./components/Navbar";
 import Chatbot from "./pages/Chatbot";
 import AOS from "aos";
@@ -62,6 +63,7 @@ const App = () => {
                   <Navbar />
                   <Hero />
                   <About />
+                  <Resume />
                   <Projects />
                   <Certificates />
                   <Contact />
