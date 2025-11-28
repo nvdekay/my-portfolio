@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
-const TimelineItem = ({ title, dateRange, role, description, highlights = [], index = 0 }) => {
+const TimelineItem = ({ title, dateRange, role, description, highlights = [], links = [], index = 0 }) => {
     return (
         <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -32,6 +34,24 @@ const TimelineItem = ({ title, dateRange, role, description, highlights = [], in
                     <p className="text-gray-400 text-sm mb-3 leading-relaxed">
                         {description}
                     </p>
+                )}
+
+                {/* Links to articles/news */}
+                {links && links.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {links.map((link, idx) => (
+                            <a
+                                key={idx}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40 rounded-lg text-purple-300 text-xs font-medium hover:from-purple-500/30 hover:to-pink-500/30 hover:border-purple-400/60 transition-all duration-300 hover:scale-105"
+                            >
+                                <FontAwesomeIcon icon={faExternalLinkAlt} className="text-xs" />
+                                {link.text}
+                            </a>
+                        ))}
+                    </div>
                 )}
 
                 {/* Highlights */}

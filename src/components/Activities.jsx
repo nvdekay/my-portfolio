@@ -14,13 +14,13 @@ const Activities = () => {
             ]
         },
         {
-            title: 'Coding Inspiration 2023',
-            dateRange: '07/2023 - 08/2023',
-            role: 'Deputy Event Organizer',
+            title: 'Codefest 2025 - FPT University',
+            dateRange: '07/2025 - 08/2025',
+            role: 'Head of Expertise Department',
             highlights: [
-                'Led logistical planning and coordination',
-                'Managed team of volunteers effectively',
-                'Facilitated participant engagement and networking'
+                'Led the Expertise Department in organizing and executing the Codefest 2025 event at FPT University',
+                'Coordinated with other departments to ensure smooth event operations and logistics',
+                'Managed a team of technical experts to provide support and guidance during the event'
             ]
         }
     ];

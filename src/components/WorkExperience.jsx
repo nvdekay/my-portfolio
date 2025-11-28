@@ -8,7 +8,7 @@ const WorkExperience = () => {
             dateRange: '09/2025 - Present',
             role: 'Fullstack Developer',
             highlights: [
-                'Was specially recruited after winning VPBank Technology Hackathon 2024',
+                'Directly recruited as IT Specialist after reaching the finals of VPBank Technology Hackathon 2025',
                 'Developing CAIP (Conversation AI Platform) for VPBank to improving customer experience',
                 'Developing and maintaining both front-end and back-end features of the business customer application, ensuring seamless user experiences',
                 'Optimizing application performance and troubleshooting issues to enhance reliability and efficiency',

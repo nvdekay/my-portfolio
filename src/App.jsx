@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hero from "./pages/Hero";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import Certificates from "./pages/Certificates";
+// import Certificates from "./pages/Certificates";
 import Contact from "./pages/Contact";
 import Resume from "./pages/Resume";
 import Navbar from "./components/Navbar";
@@ -65,7 +65,7 @@ const App = () => {
                   <About />
                   <Resume />
                   <Projects />
-                  <Certificates />
+                  {/* <Certificates /> */}
                   <Contact />
                   {/* <Chatbot /> */}
                 </>

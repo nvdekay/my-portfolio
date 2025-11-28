@@ -13,6 +13,17 @@ const Education = () => {
                 'Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems',
                 'Member of Japanese Software Engineers Club (JS Club)'
             ]
+        },
+        {
+            title: 'Phan Boi Chau High School for the Gifted',
+            dateRange: '08/2020 - 06/2023',
+            role: 'Specialized in Physics',
+            description: 'Attended specialized physics program at one of the top high schools in Nghe An Province, developing strong analytical and problem-solving skills.',
+            highlights: [
+                'Graduated from Physics specialized class',
+                'Built strong foundation in mathematics and science',
+                'Participated in provincial academic competitions'
+            ]
         }
     ];
 

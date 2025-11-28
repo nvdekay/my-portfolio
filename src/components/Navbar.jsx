@@ -10,7 +10,7 @@ function Navbar() {
     { id: 2, icon: faAddressCard, name: 'About', linkId: 'about' },
     { id: 3, icon: faFileAlt, name: 'Resume', linkId: 'resume' },
     { id: 4, icon: faDiagramProject, name: 'Projects', linkId: 'projects' },
-    { id: 5, icon: faCertificate, name: 'Certificates', linkId: 'certificates' },
+    // { id: 5, icon: faCertificate, name: 'Certificates', linkId: 'certificates' },
     { id: 6, icon: faEnvelope, name: 'Contact', linkId: 'contact' },
   ];
 
