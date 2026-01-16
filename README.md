@@ -1,273 +1,166 @@
-# 🌟 Portfolio Website - Full Stack Developer
+# 🌟 Modern AI-Powered Portfolio Website
 
-Modern, responsive portfolio website built with React, TailwindCSS, and Supabase.
+![Status](https://img.shields.io/badge/Status-Active-success)
+![React](https://img.shields.io/badge/React-18.1-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-6.3-646CFF?logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-06B6D4?logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?logo=supabase&logoColor=white)
+![Gemini AI](https://img.shields.io/badge/AI-Gemini_Pro-8E75B2?logo=google&logoColor=white)
 
-![Portfolio Preview](public/assets/images/avatars/avthero.jpg)
+> **Một website portfolio hiện đại, năng động và thông minh.**
+> Được xây dựng với công nghệ mới nhất: React, TailwindCSS, Supabase và tích hợp AI Chatbot.
 
-## ✨ Features
+---
 
-- 🎨 **Modern UI/UX** - Beautiful, responsive design với animations
-- 💬 **AI Chatbot** - Intelligent assistant powered by Gemini AI
-- 📧 **Contact Form** - Integrated với EmailJS và Supabase
-- 🗄️ **Dynamic Content** - All content managed via Supabase database
-- 🚀 **Fast Performance** - Built với Vite và optimized assets
-- 📱 **Mobile Responsive** - Perfect trên mọi devices
-- 🎭 **Smooth Animations** - Framer Motion animations throughout
+## 📖 Giới Thiệu (Overview)
 
-## 🛠️ Tech Stack
+Dự án này là một **Portfolio Cá Nhân Động (Dynamic Personal Portfolio)** giúp các lập trình viên giới thiệu bản thân, kỹ năng và dự án của mình một cách chuyên nghiệp. 
 
-### Frontend
-- **React 18** - UI library
-- **Vite** - Build tool & dev server
-- **TailwindCSS** - Styling
-- **Framer Motion** - Animations
-- **Font Awesome** - Icons
-- **AOS** - Scroll animations
+Không giống như các trang web tĩnh thông thường, toàn bộ nội dung của website này (bao gồm thông tin cá nhân, dự án, chứng chỉ, và kỹ năng) đều được quản lý thông qua **Database (Supabase)**. Điều này giúp bạn cập nhật portfolio của mình ngay lập tức mà không cần sửa code.
 
-### Backend & Services
-- **Supabase** - Database & Auth
-- **EmailJS** - Email service
-- **Gemini AI** - Chatbot intelligence
+Đặc biệt, dự án tích hợp một **AI Chatbot thông minh** (sử dụng Google Gemini Pro), đóng vai trò như một trợ lý ảo trả lời các câu hỏi của nhà tuyển dụng hoặc khách ghé thăm về bạn 24/7.
 
-## 📂 Project Structure
+---
 
-```
+## ✨ Tính Năng Nổi Bật (Features)
+
+### 🎨 Giao Diện & Trải Nghiệm (UI/UX)
+- **Thiết kế hiện đại**: Dark mode sang trọng, glassy effect (hiệu ứng kính), và typography tinh tế.
+- **Hiệu ứng mượt mà**: Sử dụng **Framer Motion** và **AOS** cho các hiệu ứng xuất hiện, chuyển cảnh và scroll.
+- **Responsive hoàn hảo**: Hiển thị đẹp mắt trên mọi thiết bị từ Mobile, Tablet đến Desktop.
+
+### 🧠 AI Assistant (Chatbot)
+- **Gemini Pro Integration**: Chatbot được tích hợp AI mạnh mẽ từ Google, có khả năng hiểu và trả lời tự nhiên.
+- **Context-Aware**: Chatbot "học" thông tin từ database của bạn để trả lời chính xác về kỹ năng, dự án và kinh nghiệm của bạn.
+- **Fallback thông minh**: Tự động chuyển sang chế độ trả lời theo kịch bản (Rule-based) nếu AI gặp sự cố.
+
+### ⚡ Hệ Thống Dữ Liệu Động (Dynamic Data)
+- **Quản lý tập trung**: Thay đổi nội dung hiển thị (Projects, Skills, Bio) trực tiếp từ Database.
+- **Supabase Realtime**: Tốc độ tải dữ liệu cực nhanh và bảo mật.
+
+### 🛠️ Các Tính Năng Khác
+- **Email Contact Form**: Tích hợp **EmailJS** gửi email trực tiếp từ website.
+- **Resume Viewer**: Xem và tải xuống CV dễ dàng.
+- **Tối ưu hóa SEO**: Cấu trúc HTML chuẩn SEO.
+
+---
+
+## 🛠️ Công Nghệ Sử Dụng (Tech Stack)
+
+| Lĩnh Vực | Công Nghệ | Mô Tả |
+| :--- | :--- | :--- |
+| **Frontend** | ![React](https://img.shields.io/badge/-React-black?logo=react) | Thư viện UI chính |
+| | ![Vite](https://img.shields.io/badge/-Vite-black?logo=vite) | Build tool siêu tốc |
+| | ![Tailwind](https://img.shields.io/badge/-TailwindCSS-black?logo=tailwindcss) | Styling framework |
+| | ![Framer Motion](https://img.shields.io/badge/-Framer_Motion-black?logo=framer) | Animation library |
+| **Backend** | ![Supabase](https://img.shields.io/badge/-Supabase-black?logo=supabase) | Database (PostgreSQL) & Authentication |
+| **AI** | ![Gemini](https://img.shields.io/badge/-Gemini_Pro-black?logo=google) | Generative AI Model |
+| **Services** | ![EmailJS](https://img.shields.io/badge/-EmailJS-black?logo=gmail) | Dịch vụ gửi email |
+
+---
+
+## 📂 Cấu Trúc Dự Án (Project Structure)
+
+```bash
 my-portfolio/
-├── public/                 # Static assets
-│   └── assets/
-│       ├── images/         # Images (avatars, projects, etc.)
-│       └── resume/         # CV/Resume files
+├── public/                 # Tài nguyên tĩnh (Images, Icons)
 ├── src/
-│   ├── components/         # Reusable components
-│   │   ├── ErrorMessage.jsx
-│   │   ├── LoadingSpinner.jsx
-│   │   └── Navbar.jsx
-│   ├── hooks/              # Custom React hooks
-│   │   ├── useChatbot.js
-│   │   ├── usePortfolioData.js
-│   │   ├── useProjectsWithTech.js
-│   │   ├── useSupabaseQuery.js
-│   │   └── useTypedText.js
-│   ├── lib/                # Libraries & utilities
-│   │   └── supabase.js
-│   ├── pages/              # Page components
-│   │   ├── About.jsx
-│   │   ├── Certificates.jsx
-│   │   ├── Chatbot.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Landing.jsx
-│   │   └── Projects.jsx
-│   ├── services/           # API services
-│   │   ├── chatbotService.js
-│   │   └── contactService.js
-│   ├── types/              # TypeScript definitions
-│   │   └── database.ts
-│   ├── App.jsx             # Main app component
-│   ├── index.css           # Global styles
-│   └── main.jsx            # Entry point
-├── database_schema.sql     # Database setup SQL
-├── MIGRATION_GUIDE.md      # Migration instructions
-├── QUICK_REFERENCE.md      # Quick reference guide
-└── README.md               # This file
+│   ├── components/         # Các thành phần giao diện tái sử dụng (Navbar, Cards...)
+│   ├── hooks/              # Custom React Hooks (Logic xử lý dữ liệu, AI)
+│   ├── lib/                # Cấu hình thư viện (Supabase client)
+│   ├── pages/              # Các trang chính (Hero, About, Projects, Contact)
+│   ├── services/           # Services gọi API (Chatbot, Contact)
+│   ├── App.jsx             # Component gốc, quản lý Routing
+│   └── main.jsx            # Entry point của ứng dụng
+└── database_schema.sql     # Script SQL để khởi tạo database
 ```
 
-## 🚀 Getting Started
+---
 
-### Prerequisites
-- Node.js 18+ và npm/yarn
-- Supabase account
-- EmailJS account (optional)
-- Gemini API key (optional, for AI chatbot)
+## 🚀 Hướng Dẫn Cài Đặt (Getting Started)
 
-### Installation
+Làm theo các bước sau để chạy dự án trên máy của bạn:
 
-1. **Clone repository**
+### 1️⃣ Điều Kiện Tiên Quyết
+- **Node.js**: Phiên bản 18 trở lên.
+- **Tài khoản Supabase**: Để tạo database.
+- **Tài khoản Google AI Studio** (Optional): Để lấy API Key cho Chatbot.
+
+### 2️⃣ Clone Dự Án
 ```bash
 git clone https://github.com/nvdekay/my-portfolio.git
 cd my-portfolio
 ```
 
-2. **Install dependencies**
+### 3️⃣ Cài Đặt Thư Viện
 ```bash
 npm install
 ```
 
-3. **Setup environment variables**
+### 4️⃣ Cấu Hình Môi Trường (.env)
+Tạo file `.env` tại thư mục gốc và điền các thông tin sau:
 
-Create `.env.local` file:
 ```env
+# Supabase Configuration
 VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_anon_key
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# Optional
+# Google Gemini AI (Optional - cho Chatbot)
 VITE_GEMINI_API_KEY=your_gemini_api_key
+
+# EmailJS (Optional - cho Contact Form)
 VITE_EMAILJS_SERVICE_ID=your_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_template_id
 VITE_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-4. **Setup Database**
+### 5️⃣ Thiết Lập Database
+1.  Truy cập **Supabase Dashboard**.
+2.  Vào mục **SQL Editor**.
+3.  Copy toàn bộ nội dung trong file `database_schema.sql` của dự án.
+4.  Paste vào SQL Editor và nhấn **Run** để tạo bảng và dữ liệu mẫu.
 
-- Open Supabase Dashboard
-- Go to SQL Editor
-- Copy và run `database_schema.sql`
-- Verify tables created successfully
-
-5. **Run development server**
+### 6️⃣ Chạy Dự Án
 ```bash
 npm run dev
 ```
-
-Visit `http://localhost:5173`
-
-## 📊 Database Schema
-
-### Tables:
-- **`profile`** - Personal information (1 record only)
-- **`content_blocks`** - Universal content storage (projects, skills, certificates, etc.)
-- **`chat_data`** - Chat history và knowledge base
-- **`contact_messages`** - Messages từ contact form
-- **`site_settings`** - Website configuration
-
-📖 **Detailed documentation:** See `MIGRATION_GUIDE.md` và `QUICK_REFERENCE.md`
-
-## 🎨 Content Management
-
-### Adding new content qua SQL:
-
-**Add Project:**
-```sql
-INSERT INTO content_blocks (type, title, description, url, metadata, display_order)
-VALUES (
-  'project',
-  'My Project',
-  'Description...',
-  '/assets/images/projects/project.png',
-  '{"type": "WEB", "demo_url": "https://...", "technologies": [...]}'::jsonb,
-  1
-);
-```
-
-**Add Skill:**
-```sql
-INSERT INTO content_blocks (type, title, subtitle, display_order)
-VALUES ('skill', 'React', 'Frontend', 1);
-```
-
-**Update Settings:**
-```sql
-UPDATE site_settings 
-SET setting_value = 'New Value' 
-WHERE setting_key = 'hero_title';
-```
-
-## 🔧 Available Scripts
-
-```bash
-npm run dev          # Start dev server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-```
-
-## 📱 Features Breakdown
-
-### 🏠 Hero Section
-- Dynamic personal info từ database
-- Typing animation với multiple roles
-- Social media links
-- Smooth scroll navigation
-
-### 👤 About Section
-- Personal bio và information
-- Skills grouped by category
-- Resume download button
-- Animated entrance effects
-
-### 💼 Projects Section
-- Dynamic project cards
-- Filter by type (WEB, APP, AI, LANDING)
-- Pagination support
-- Technology tags với colors
-- Demo và GitHub links
-
-### 🎓 Certificates Section
-- Certificate cards với images
-- External links để verify
-- Issuer information
-- Dynamic loading từ database
-
-### 📧 Contact Section
-- Contact form với validation
-- Save messages vào database
-- EmailJS integration
-- Success/error feedback
-
-### 💬 AI Chatbot
-- Floating chatbot button
-- Knowledge base từ database
-- Gemini AI integration
-- Chat history tracking
-- Quick action suggestions
-
-## 🎯 Customization
-
-### Colors
-Edit `tailwind.config.js` để thay đổi color scheme.
-
-### Content
-Update database qua Supabase Dashboard hoặc SQL.
-
-### Styles
-Modify component styles trong respective `.jsx` files.
-
-## 📝 Documentation Files
-
-- `MIGRATION_GUIDE.md` - Step-by-step migration guide
-- `DATABASE_MIGRATION_SUMMARY.md` - Schema changes overview
-- `QUICK_REFERENCE.md` - Quick SQL queries và examples
-- `COMPLETED_MIGRATION.md` - Migration completion status
-- `database_schema.sql` - Complete database setup
-
-## 🐛 Troubleshooting
-
-### Common Issues:
-
-**"Missing Supabase environment variables"**
-- Check `.env.local` file exists và có đúng format
-- Restart dev server sau khi update env
-
-**"Failed to fetch data"**
-- Verify Supabase RLS policies
-- Check anon role permissions
-- Confirm tables exist
-
-**"Technologies không hiển thị"**
-- Check `metadata` field có valid JSON
-- Ensure `technologies` là array
-
-See `MIGRATION_GUIDE.md` for more troubleshooting tips.
-
-## 📄 License
-
-MIT License - feel free to use this project for your own portfolio!
-
-## 👤 Author
-
-**Nguyễn Vũ Đăng Khánh**
-- GitHub: [@nvdekay](https://github.com/nvdekay)
-- Email: your-email@example.com
-
-## 🙏 Acknowledgments
-
-- Supabase team for amazing BaaS platform
-- Framer Motion for smooth animations
-- TailwindCSS for utility-first CSS
-- React community for excellent ecosystem
+Truy cập: `http://localhost:5173`
 
 ---
 
-**⭐ If you find this project helpful, please give it a star!**
+## 📊 Database Schema (Cơ Sở Dữ Liệu)
 
-Built with ❤️ using React + Vite + Supabase
+Dự án sử dụng 5 bảng chính trong Supabase:
+
+1.  **`profile`**: Chứa thông tin cá nhân duy nhất (Tên, Bio, Title...).
+2.  **`content_blocks`**: Bảng đa năng lưu trữ Projects, Skills, Certificates, Roles (dùng cột `type` để phân loại).
+3.  **`chat_data`**: Lưu lịch sử chat và Knowledge Base cho AI học.
+4.  **`contact_messages`**: Lưu tin nhắn từ form liên hệ.
+5.  **`site_settings`**: Các cài đặt cấu hình website (Ví dụ: Tiêu đề Hero, tốc độ gõ chữ...).
+
+---
+
+## 🤝 Đóng Góp (Contributing)
+
+Mọi đóng góp đều được hoan nghênh! Nếu bạn muốn cải thiện dự án:
+
+1.  Fork repository này.
+2.  Tạo branch mới (`git checkout -b feature/AmazingFeature`).
+3.  Commit thay đổi (`git commit -m 'Add some AmazingFeature'`).
+4.  Push lên branch (`git push origin feature/AmazingFeature`).
+5.  Tạo Pull Request.
+
+---
+
+## 👤 Tác Giả (Author)
+
+**Nguyễn Vũ Đăng Khánh**
+
+- **GitHub**: [@nvdekay](https://github.com/nvdekay)
+- **Role**: Full Stack Developer
+
+---
+
+<p align="center">
+  <i>Được xây dựng với niềm đam mê và ❤️. Nếu thấy dự án hữu ích, hãy tặng 1 ⭐ nhé!</i>
+</p>
